@@ -1,10 +1,10 @@
 export const Colors = {
   // Brand
   brand: {
-    blue: '#1B4F7C',        // Primary brand blue - deep but not too dark
-    blueDark: '#0D3B5E',    // Darker shade for emphasis
-    blueLight: '#3A7CC2',   // Lighter interactive blue
-    blueFaded: '#EDF3F9',   // Very subtle blue tint for backgrounds
+    blue: '#003087',        // Tradelink primary blue
+    blueDark: '#002060',    // Darker shade for emphasis
+    blueLight: '#1A5DAB',   // Lighter interactive blue
+    blueFaded: '#E8EEF7',   // Very subtle blue tint for backgrounds
     accent: '#E8443A',      // Red-coral accent for primary CTAs
     accentDark: '#C93830',  // Darker accent
     accentLight: '#FF6B5E', // Lighter accent
@@ -47,13 +47,13 @@ export const Colors = {
   warningBg: '#FDF3E3',     // Light amber bg
   error: '#D94343',         // Red - for errors
   errorBg: '#FCEAEA',       // Light red bg
-  info: '#3A7CC2',          // Blue - for info (matches brand)
-  infoBg: '#EDF3F9',        // Light blue bg (matches brand faded)
+  info: '#1A5DAB',          // Blue - for info (matches brand light)
+  infoBg: '#E8EEF7',        // Light blue bg (matches brand faded)
 
   // Delivery status
   status: {
     scheduled: '#D4891C',    // Amber
-    dispatched: '#3A7CC2',   // Blue
+    dispatched: '#1A5DAB',   // Blue
     enroute: '#2E8B57',      // Green
     delivered: '#2E8B57',    // Green
     processing: '#6B5B95',   // Muted purple

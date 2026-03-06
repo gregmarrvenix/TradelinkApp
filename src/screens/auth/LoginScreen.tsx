@@ -81,13 +81,11 @@ export default function LoginScreen(_props: LoginScreenProps) {
           keyboardShouldPersistTaps="handled"
         >
           <View style={styles.brandSection}>
-            <View style={styles.logoBanner}>
-              <Image
-                source={logoSource}
-                style={styles.logo}
-                resizeMode="contain"
-              />
-            </View>
+            <Image
+              source={logoSource}
+              style={styles.logo}
+              resizeMode="contain"
+            />
             <Text style={[Typography.body, styles.tagline]}>
               Save time. Plumb online.
             </Text>
@@ -204,17 +202,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: Spacing.huge,
   },
-  logoBanner: {
-    backgroundColor: Colors.brand.blue,
-    borderRadius: Radius.lg,
-    paddingHorizontal: 32,
-    paddingVertical: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   logo: {
-    width: 220,
-    height: 55,
+    width: 280,
+    height: 70,
+    borderRadius: Radius.md,
   },
   tagline: {
     color: Colors.text.secondary,

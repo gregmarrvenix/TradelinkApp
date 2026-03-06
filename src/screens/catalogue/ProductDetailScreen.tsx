@@ -45,7 +45,7 @@ export default function ProductDetailScreen({ navigation, route }: CatalogueProd
     addItem(product, qty);
     triggerHaptic('notificationSuccess');
     Toast.show({
-      type: 'success',
+      type: 'info',
       text1: 'Added to cart',
       text2: `${qty}x ${product.name}`,
       visibilityTime: 2000,

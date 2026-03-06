@@ -22,7 +22,7 @@ import { Colors } from '../../theme/colors';
 import { Typography } from '../../theme/typography';
 import { Spacing, Radius } from '../../theme/spacing';
 import { Shadows } from '../../theme/shadows';
-import { useNavigation as useNav } from '@react-navigation/native';
+import { useNavigation as useNav, CommonActions } from '@react-navigation/native';
 import type { OrdersTrackingScreenProps } from '../../navigation/types';
 import type { OrderStatus } from '../../types';
 
@@ -159,17 +159,15 @@ export default function TrackingScreen({ route, navigation }: OrdersTrackingScre
             <Button
               label="View Order Details"
               onPress={() => {
-                const state = navigation.getState?.();
-                // Check if OrderDetail exists in current stack
-                if (state?.routeNames?.includes('OrderDetail')) {
-                  navigation.navigate('OrderDetail' as any, { orderId: order.id });
-                } else {
-                  // Navigate via root to OrdersTab
-                  (navigation as any).getParent()?.getParent()?.navigate('OrdersTab', {
-                    screen: 'OrderDetail',
-                    params: { orderId: order.id },
-                  });
-                }
+                navigation.dispatch(
+                  CommonActions.navigate({
+                    name: 'OrdersTab',
+                    params: {
+                      screen: 'OrderDetail',
+                      params: { orderId: order.id },
+                    },
+                  }),
+                );
               }}
               variant="ghost"
               size="md"

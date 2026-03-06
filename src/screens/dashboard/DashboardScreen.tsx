@@ -409,28 +409,36 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
         {/* Account Summary */}
         <AnimatedSection index={6}>
           <View style={styles.section}>
-            <Card style={{ backgroundColor: colors.surface, borderColor: colors.border }}>
-              <Text style={[Typography.label, { color: colors.textSecondary, marginBottom: Spacing.sm }]}>
-                Account: {user?.accountNumber ?? 'TL-88421'}
-              </Text>
-              <Text style={[Typography.h4, { color: colors.textPrimary }]}>
-                Balance: $8,432.50 / $25,000.00
-              </Text>
-              <View style={styles.progressWrap}>
-                <Progress.Bar
-                  progress={8432.5 / 25000}
-                  width={null}
-                  height={8}
-                  borderRadius={4}
-                  color={Colors.brand.blue}
-                  unfilledColor={colors.surface2}
-                  borderWidth={0}
-                />
-              </View>
-              <Text style={[Typography.caption, { color: colors.textSecondary }]}>
-                {((8432.5 / 25000) * 100).toFixed(0)}% credit used
-              </Text>
-            </Card>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => nav.navigate('AccountTab', { screen: 'Account' })}
+            >
+              <Card style={{ backgroundColor: colors.surface, borderColor: colors.border }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: Spacing.sm }}>
+                  <Text style={[Typography.label, { color: colors.textSecondary }]}>
+                    Account: {user?.accountNumber ?? 'TL-88421'}
+                  </Text>
+                  <MaterialIcons name="chevron-right" size={20} color={colors.textTertiary} />
+                </View>
+                <Text style={[Typography.h4, { color: colors.textPrimary }]}>
+                  Balance: $8,432.50 / $25,000.00
+                </Text>
+                <View style={styles.progressWrap}>
+                  <Progress.Bar
+                    progress={8432.5 / 25000}
+                    width={null}
+                    height={8}
+                    borderRadius={4}
+                    color={Colors.brand.blue}
+                    unfilledColor={colors.surface2}
+                    borderWidth={0}
+                  />
+                </View>
+                <Text style={[Typography.caption, { color: colors.textSecondary }]}>
+                  {((8432.5 / 25000) * 100).toFixed(0)}% credit used
+                </Text>
+              </Card>
+            </TouchableOpacity>
           </View>
         </AnimatedSection>
 

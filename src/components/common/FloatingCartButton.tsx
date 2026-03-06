@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View, StyleSheet, Platform, Pressable } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useCartStore } from '../../store/cartStore';
 import { Colors } from '../../theme/colors';
@@ -19,8 +19,14 @@ export default function FloatingCartButton({ onPress, hidden }: Props) {
 
   const subtotal = items.reduce((sum, i) => sum + (i.product.price ?? 0) * i.quantity, 0);
 
+  const Wrapper = Platform.OS === 'web' ? Pressable : TouchableOpacity;
+
   return (
-    <TouchableOpacity style={styles.fab} onPress={onPress} activeOpacity={0.9}>
+    <Wrapper
+      style={[styles.fab, Platform.OS === 'web' && { cursor: 'pointer' }] as any}
+      onPress={onPress}
+      {...(Platform.OS !== 'web' ? { activeOpacity: 0.9 } : {})}
+    >
       <View style={styles.iconWrap}>
         <MaterialIcons name="shopping-cart" size={22} color={Colors.white} />
         <View style={styles.badge}>
@@ -31,14 +37,14 @@ export default function FloatingCartButton({ onPress, hidden }: Props) {
       <Text style={[Typography.label, styles.price]}>
         ${subtotal.toFixed(2)}
       </Text>
-    </TouchableOpacity>
+    </Wrapper>
   );
 }
 
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 70,
+    bottom: 80,
     left: 16,
     right: 16,
     backgroundColor: Colors.brand.accent,
@@ -52,7 +58,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     elevation: 6,
     zIndex: 999,
-  },
+  } as any,
   iconWrap: {
     position: 'relative',
     marginRight: 12,

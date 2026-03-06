@@ -69,7 +69,7 @@ export default function SearchResultsScreen({ navigation, route }: SearchResults
     addItem(product);
     triggerHaptic('impactMedium');
     Toast.show({
-      type: 'success',
+      type: 'info',
       text1: 'Added to cart',
       text2: `${product.name} added`,
       visibilityTime: 2000,
