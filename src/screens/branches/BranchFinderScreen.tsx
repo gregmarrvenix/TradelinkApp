@@ -166,40 +166,34 @@ export default function BranchFinderScreen({ navigation, ..._props }: BranchFind
         <Text style={[Typography.h2, { color: colors.textPrimary }]}>Find a Branch</Text>
       </View>
 
-      <View style={[styles.mapPlaceholder, { backgroundColor: Colors.light.surface2, borderColor: colors.border }]}>
-        <View style={styles.mapContent}>
-          <MaterialIcons name="place" size={48} color={Colors.brand.blue} />
-          <Text style={[Typography.h3, { color: colors.textSecondary, marginTop: Spacing.sm }]}>
-            Map View
-          </Text>
-          <Text style={[Typography.caption, { color: colors.textTertiary, marginTop: Spacing.xs }]}>
-            {sorted.length} branch{sorted.length !== 1 ? 'es' : ''} nearby
-          </Text>
-        </View>
+      <View style={[styles.mapPlaceholder, { backgroundColor: '#E8EDF3', borderColor: colors.border }]}>
+        {/* Simulated street grid */}
+        <View style={[styles.mapRoad, styles.mapRoadH, { top: '25%' }]} />
+        <View style={[styles.mapRoad, styles.mapRoadH, { top: '50%' }]} />
+        <View style={[styles.mapRoad, styles.mapRoadH, { top: '75%' }]} />
+        <View style={[styles.mapRoad, styles.mapRoadV, { left: '20%' }]} />
+        <View style={[styles.mapRoad, styles.mapRoadV, { left: '45%' }]} />
+        <View style={[styles.mapRoad, styles.mapRoadV, { left: '70%' }]} />
         {sorted.slice(0, 4).map((b, i) => {
-          const isHome = b.id === HOME_BRANCH_ID;
+          const isHome = (b as any).isHomeBranch;
+          const positions = [
+            { top: '20%', left: '25%' },
+            { top: '40%', left: '55%' },
+            { top: '60%', left: '35%' },
+            { top: '30%', left: '75%' },
+          ];
+          const pos = positions[i] ?? positions[0];
           return (
-            <View
-              key={b.id}
-              style={[
-                styles.mapPin,
-                {
-                  top: 30 + (i * 20) % 60,
-                  left: 40 + (i * 60) % 200,
-                },
-              ]}
-            >
-              <MaterialIcons
-                name={isHome ? 'star' : 'fiber-manual-record'}
-                size={isHome ? 18 : 12}
-                color={Colors.brand.blue}
-              />
-              <Text style={[Typography.overline, { color: colors.textSecondary }]}>
-                {b.name.split(' ')[0]}
-              </Text>
+            <View key={b.id} style={[styles.branchMarker, pos, isHome && styles.homeMarker]}>
+              <MaterialIcons name={isHome ? 'star' : 'store'} size={14} color={Colors.white} />
             </View>
           );
         })}
+        <View style={styles.mapLabel}>
+          <Text style={[Typography.caption, { color: colors.textSecondary }]}>
+            {sorted.length} branch{sorted.length !== 1 ? 'es' : ''} nearby
+          </Text>
+        </View>
       </View>
 
       <View style={styles.searchWrap}>
@@ -243,14 +237,48 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.md,
     position: 'relative',
   },
-  mapContent: {
-    flex: 1,
+  mapRoad: {
+    position: 'absolute',
+    backgroundColor: '#D0D8E2',
+  },
+  mapRoadH: {
+    left: 0,
+    right: 0,
+    height: 2,
+  },
+  mapRoadV: {
+    top: 0,
+    bottom: 0,
+    width: 2,
+  },
+  branchMarker: {
+    position: 'absolute',
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: Colors.brand.blue,
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 3,
   },
-  mapPin: {
+  homeMarker: {
+    backgroundColor: Colors.brand.accent,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+  },
+  mapLabel: {
     position: 'absolute',
-    alignItems: 'center',
+    bottom: 8,
+    right: 8,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
   },
   searchWrap: {
     paddingHorizontal: Spacing.screen,

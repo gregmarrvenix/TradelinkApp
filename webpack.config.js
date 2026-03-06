@@ -79,7 +79,7 @@ module.exports = {
       { test: /\.m?js$/, resolve: { fullySpecified: false } },
       babelLoaderConfiguration,
       {
-        test: /\.(gif|jpe?g|png|svg)$/,
+        test: /\.(gif|jpe?g|png|svg|webp)$/,
         use: { loader: 'url-loader', options: { name: '[name].[ext]' } },
       },
       {

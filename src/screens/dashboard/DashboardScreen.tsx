@@ -128,7 +128,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
       {
         icon: 'qr-code-scanner',
         label: 'Scan',
-        color: Colors.brand.blueLight,
+        color: Colors.brand.blue,
         onPress: () => navigation.navigate('BarcodeScan'),
       },
       {
@@ -140,13 +140,13 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
       {
         icon: 'request-quote',
         label: 'Quotes',
-        color: Colors.brand.blueDark,
+        color: Colors.brand.blue,
         onPress: () => nav.navigate('AccountTab', { screen: 'Quotes' }),
       },
       {
         icon: 'receipt-long',
         label: 'Invoices',
-        color: Colors.brand.blueLight,
+        color: Colors.brand.blue,
         onPress: () => nav.navigate('AccountTab', { screen: 'Invoices' }),
       },
       {

@@ -54,6 +54,7 @@ export default function CartScreen({ navigation }: CartScreenProps) {
   const setDeliveryMethod = useCartStore((s) => s.setDeliveryMethod);
   const setSelectedBranch = useCartStore((s) => s.setSelectedBranch);
   const setJobReference = useCartStore((s) => s.setJobReference);
+  const clearCart = useCartStore((s) => s.clearCart);
 
   const { data: branches } = useBranches();
   const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
@@ -152,6 +153,15 @@ export default function CartScreen({ navigation }: CartScreenProps) {
             </TouchableOpacity>
             <Text style={[Typography.h2, { color: colors.textPrimary }]}>Cart</Text>
             <Badge count={itemCount} />
+            <View style={{ flex: 1 }} />
+            <TouchableOpacity
+              onPress={() => { haptic(); clearCart(); }}
+              style={styles.clearBtn}
+              activeOpacity={0.7}
+            >
+              <MaterialIcons name="delete-outline" size={18} color={Colors.brand.blue} />
+              <Text style={[Typography.labelSm, { color: Colors.brand.blue, marginLeft: 4 }]}>Clear</Text>
+            </TouchableOpacity>
           </View>
         }
         ListFooterComponent={
@@ -361,6 +371,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.md,
     marginBottom: Spacing.lg,
+  },
+  clearBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: Radius.sm,
+    backgroundColor: Colors.brand.blueFaded,
   },
   footer: {
     marginTop: Spacing.md,

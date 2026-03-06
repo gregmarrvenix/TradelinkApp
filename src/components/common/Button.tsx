@@ -46,14 +46,14 @@ export default function Button({
         style={[fullWidth && { width: '100%' }, style]}
       >
         <LinearGradient
-          colors={isDisabled ? ['#AAB0B8', '#969DA6'] : [Colors.brand.accentLight, Colors.brand.accent]}
+          colors={isDisabled ? ['#AAB0B8', '#969DA6'] : [Colors.brand.blueLight, Colors.brand.blue]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={[
             styles.base,
             sizeStyles,
             !isDisabled && {
-              shadowColor: '#E8443A',
+              shadowColor: Colors.brand.blue,
               shadowOffset: { width: 0, height: 4 },
               shadowOpacity: 0.25,
               shadowRadius: 8,

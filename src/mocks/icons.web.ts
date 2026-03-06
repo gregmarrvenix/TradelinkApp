@@ -23,10 +23,16 @@ const MaterialIcons = ({ name, size = 24, color = '#000', style }: any) => {
     style: {
       fontSize: size,
       color,
+      width: size,
+      height: size,
+      lineHeight: `${size}px`,
+      textAlign: 'center',
       userSelect: 'none',
       direction: 'ltr',
       display: 'inline-block',
       verticalAlign: 'middle',
+      overflow: 'hidden',
+      flexShrink: 0,
       ...style,
     },
   }, toMaterialName(name));

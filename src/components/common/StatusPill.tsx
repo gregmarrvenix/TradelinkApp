@@ -11,7 +11,7 @@ const STATUS_MAP: Record<string, { label: string; color: string; bg: string }> =
   delivered: { label: 'Delivered', color: Colors.success, bg: Colors.successBg },
   processing: { label: 'Processing', color: '#6B5B95', bg: '#F0EDF5' },
   cancelled: { label: 'Cancelled', color: Colors.error, bg: Colors.errorBg },
-  pickup: { label: 'Ready Pickup', color: '#2B8F8F', bg: '#E6F3F3' },
+  pickup: { label: 'Ready for Pickup', color: '#2B8F8F', bg: '#E6F3F3' },
   unpaid: { label: 'Unpaid', color: Colors.warning, bg: Colors.warningBg },
   paid: { label: 'Paid', color: Colors.success, bg: Colors.successBg },
   pending: { label: 'Pending', color: Colors.warning, bg: Colors.warningBg },

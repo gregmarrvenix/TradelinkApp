@@ -8,13 +8,14 @@ import { Shadows } from '../../theme/shadows';
 
 interface Props {
   onPress: () => void;
+  hidden?: boolean;
 }
 
-export default function FloatingCartButton({ onPress }: Props) {
+export default function FloatingCartButton({ onPress, hidden }: Props) {
   const items = useCartStore((s) => s.items);
   const itemCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
-  if (itemCount === 0) return null;
+  if (itemCount === 0 || hidden) return null;
 
   const subtotal = items.reduce((sum, i) => sum + (i.product.price ?? 0) * i.quantity, 0);
 
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     shadowColor: Colors.brand.accent,
     shadowOpacity: 0.3,
     elevation: 6,
+    zIndex: 999,
   },
   iconWrap: {
     position: 'relative',

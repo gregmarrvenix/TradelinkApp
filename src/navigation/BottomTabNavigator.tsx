@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { useNavigation, CommonActions, useNavigationState } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useThemeStore } from '../store/themeStore';
@@ -65,10 +65,24 @@ export default function BottomTabNavigator() {
   const colors = useThemeStore((s) => s.colors)();
   const nav = useNavigation<NavigationProp<BottomTabParamList>>();
 
+  // Detect if user is on Cart or Checkout screen
+  const navState = useNavigationState((s) => s);
+  const isOnCartScreen = React.useMemo(() => {
+    try {
+      const accountTab = navState?.routes?.find((r: any) => r.name === 'AccountTab');
+      const nestedState = accountTab?.state;
+      if (nestedState) {
+        const currentRoute = nestedState.routes[nestedState.index ?? 0];
+        return currentRoute?.name === 'Cart' || currentRoute?.name === 'Checkout';
+      }
+      return false;
+    } catch { return false; }
+  }, [navState]);
+
   // Web needs more bottom padding; platform-specific height
   const isWeb = Platform.OS === 'web';
-  const tabHeight = isWeb ? 64 : Platform.OS === 'android' ? 60 : 80;
-  const tabPaddingBottom = isWeb ? 8 : Platform.OS === 'android' ? 8 : 24;
+  const tabHeight = isWeb ? 72 : Platform.OS === 'android' ? 60 : 80;
+  const tabPaddingBottom = isWeb ? 12 : Platform.OS === 'android' ? 8 : 24;
 
   return (
     <View style={{ flex: 1 }}>
@@ -145,6 +159,7 @@ export default function BottomTabNavigator() {
     </Tab.Navigator>
     <FloatingCartButton
       onPress={() => nav.navigate('AccountTab', { screen: 'Cart' } as any)}
+      hidden={isOnCartScreen}
     />
     </View>
   );

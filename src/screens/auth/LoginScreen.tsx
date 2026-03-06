@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Image,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Toast from 'react-native-toast-message';
@@ -20,6 +21,10 @@ import { Colors } from '../../theme/colors';
 import { Typography } from '../../theme/typography';
 import { Spacing, Radius } from '../../theme/spacing';
 import type { LoginScreenProps } from '../../navigation/types';
+
+const logoSource = Platform.OS === 'web'
+  ? { uri: '/tradelink-logo.webp' }
+  : require('../../assets/images/tradelink-logo.webp');
 
 const loginSchema = z.object({
   email: z.email('Please enter a valid email'),
@@ -51,7 +56,7 @@ export default function LoginScreen(_props: LoginScreenProps) {
     } catch {
       Toast.show({
         type: 'error',
-        text1: 'Sign in failed',
+        text1: 'Login failed',
         text2: 'Please check your credentials and try again.',
       });
     }
@@ -76,7 +81,11 @@ export default function LoginScreen(_props: LoginScreenProps) {
           keyboardShouldPersistTaps="handled"
         >
           <View style={styles.brandSection}>
-            <Text style={[Typography.display2, styles.brandText]}>TRADELINK</Text>
+            <Image
+              source={logoSource}
+              style={styles.logo}
+              resizeMode="contain"
+            />
             <Text style={[Typography.body, styles.tagline]}>
               Save time. Plumb online.
             </Text>
@@ -148,7 +157,7 @@ export default function LoginScreen(_props: LoginScreenProps) {
             </View>
 
             <Button
-              label="Sign In"
+              label="Log In"
               onPress={handleSubmit(onSubmit)}
               variant="primary"
               size="lg"
@@ -193,14 +202,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: Spacing.huge,
   },
-  brandText: {
-    color: Colors.brand.blue,
-    fontWeight: '800',
+  logo: {
+    width: 260,
+    height: 65,
   },
   tagline: {
     color: Colors.text.secondary,
     opacity: 0.7,
-    marginTop: Spacing.sm,
+    marginTop: Spacing.md,
   },
   formSection: {
     gap: Spacing.lg,
