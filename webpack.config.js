@@ -70,6 +70,8 @@ module.exports = {
       'react-native-progress': mock('progress'),
       'react-native-vector-icons/MaterialIcons': mock('icons'),
       'react-native-modal': mock('modal'),
+      '@react-navigation/native-stack': mock('native-stack'),
+      'react-native-toast-message': mock('toast'),
     },
   },
   module: {
