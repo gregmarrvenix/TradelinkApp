@@ -23,8 +23,8 @@ import { Spacing, Radius } from '../../theme/spacing';
 import type { LoginScreenProps } from '../../navigation/types';
 
 const logoSource = Platform.OS === 'web'
-  ? { uri: '/tradelink-logo.webp' }
-  : require('../../assets/images/tradelink-logo.webp');
+  ? { uri: '/tradelink-logo.png' }
+  : require('../../assets/images/tradelink-logo.png');
 
 const loginSchema = z.object({
   email: z.email('Please enter a valid email'),
@@ -81,11 +81,13 @@ export default function LoginScreen(_props: LoginScreenProps) {
           keyboardShouldPersistTaps="handled"
         >
           <View style={styles.brandSection}>
-            <Image
-              source={logoSource}
-              style={styles.logo}
-              resizeMode="contain"
-            />
+            <View style={styles.logoBanner}>
+              <Image
+                source={logoSource}
+                style={styles.logo}
+                resizeMode="contain"
+              />
+            </View>
             <Text style={[Typography.body, styles.tagline]}>
               Save time. Plumb online.
             </Text>
@@ -202,9 +204,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: Spacing.huge,
   },
+  logoBanner: {
+    backgroundColor: Colors.brand.blue,
+    borderRadius: Radius.lg,
+    paddingHorizontal: 32,
+    paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   logo: {
-    width: 260,
-    height: 65,
+    width: 220,
+    height: 55,
   },
   tagline: {
     color: Colors.text.secondary,
