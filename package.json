@@ -26,7 +26,7 @@
     "moti": "^0.30.0",
     "nativewind": "^4.2.2",
     "react": "19.2.3",
-    "react-dom": "^19.2.4",
+    "react-dom": "^19.2.3",
     "react-hook-form": "^7.71.2",
     "react-native": "0.84.1",
     "react-native-biometrics": "^3.0.1",
