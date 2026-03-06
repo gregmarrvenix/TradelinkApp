@@ -155,7 +155,17 @@ export default function CartScreen({ navigation }: CartScreenProps) {
             <Badge count={itemCount} />
             <View style={{ flex: 1 }} />
             <TouchableOpacity
-              onPress={() => { haptic(); clearCart(); }}
+              onPress={() => {
+                if (Platform.OS === 'web') {
+                  if (window.confirm('Clear all items from your cart?')) { haptic(); clearCart(); }
+                } else {
+                  const { Alert } = require('react-native');
+                  Alert.alert('Clear Cart', 'Clear all items from your cart?', [
+                    { text: 'Cancel', style: 'cancel' },
+                    { text: 'Clear', style: 'destructive', onPress: () => { haptic(); clearCart(); } },
+                  ]);
+                }
+              }}
               style={styles.clearBtn}
               activeOpacity={0.7}
             >

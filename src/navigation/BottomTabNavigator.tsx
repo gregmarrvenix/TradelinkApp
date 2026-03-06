@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBar as BottomTabBarComponent } from '@react-navigation/bottom-tabs';
 import { useNavigation, CommonActions, useNavigationState } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -101,6 +101,15 @@ export default function BottomTabNavigator() {
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
       }}
+      tabBar={(props) => (
+        <View>
+          <FloatingCartButton
+            onPress={() => nav.navigate('AccountTab', { screen: 'Cart' } as any)}
+            hidden={isOnCartScreen}
+          />
+          <BottomTabBarComponent {...props} />
+        </View>
+      )}
     >
       <Tab.Screen
         name="HomeTab"
@@ -157,10 +166,6 @@ export default function BottomTabNavigator() {
         })}
       />
     </Tab.Navigator>
-    <FloatingCartButton
-      onPress={() => nav.navigate('AccountTab', { screen: 'Cart' } as any)}
-      hidden={isOnCartScreen}
-    />
     </View>
   );
 }
