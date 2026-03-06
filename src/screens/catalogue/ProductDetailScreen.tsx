@@ -55,7 +55,7 @@ export default function ProductDetailScreen({ navigation, route }: CatalogueProd
   const handleShare = useCallback(async () => {
     if (!product) return;
     await Share.share({
-      message: `Check out ${product.name} (SKU: ${product.sku}) - $${product.price.toFixed(2)}`,
+      message: `Check out ${product.name} (SKU: ${product.sku}) - $${(product.price ?? 0).toFixed(2)}`,
     });
   }, [product]);
 
@@ -86,8 +86,8 @@ export default function ProductDetailScreen({ navigation, route }: CatalogueProd
     );
   }
 
-  const specs = Object.entries(product.specifications ?? {});
-  const tags = [product.category, product.subCategory, product.brand].filter(Boolean);
+  const specs = Object.entries(product.specifications ?? product.specs ?? {});
+  const tags = [...(product.tags ?? []), product.category, product.subCategory, product.brand].filter((v, i, a) => Boolean(v) && a.indexOf(v) === i);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
@@ -97,7 +97,7 @@ export default function ProductDetailScreen({ navigation, route }: CatalogueProd
           <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
-          <Text style={[Typography.overline, { color: Colors.brand.red }]}>{product.brand}</Text>
+          <Text style={[Typography.overline, { color: Colors.brand.blue }]}>{product.brand}</Text>
         </View>
         <TouchableOpacity onPress={handleShare} style={styles.headerBtn}>
           <MaterialIcons name="share" size={22} color={colors.textPrimary} />
@@ -200,7 +200,7 @@ export default function ProductDetailScreen({ navigation, route }: CatalogueProd
 
         {/* Add to cart */}
         <TouchableOpacity
-          style={[styles.addToCartBtn, Shadows.red]}
+          style={[styles.addToCartBtn, Shadows.blue]}
           onPress={handleAddToCart}
           activeOpacity={0.85}
         >
@@ -209,7 +209,7 @@ export default function ProductDetailScreen({ navigation, route }: CatalogueProd
             Add to Cart
           </Text>
           <Text style={[Typography.h4, { color: Colors.white, marginLeft: Spacing.sm }]}>
-            ${totalPrice.toFixed(2)}
+            ${(totalPrice ?? 0).toFixed(2)}
           </Text>
         </TouchableOpacity>
       </View>
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
     paddingVertical: 14,
     borderRadius: Radius.md,
   },

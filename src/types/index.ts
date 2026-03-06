@@ -18,14 +18,19 @@ export interface Product {
   brand: string;
   category: string;
   subCategory: string;
+  subcategory?: string;
   price: number;
+  tradePrice?: number;
   rrp: number;
   unit: string;
   stockStatus: 'in-stock' | 'low-stock' | 'out-of-stock' | 'special-order';
   stockQty: number;
+  stock?: Array<{ branchId: string; branchName: string; status: string; qty: number }>;
   images: string[];
   specifications: Record<string, string>;
-  relatedProductIds: string[];
+  specs?: Record<string, string>;
+  tags?: string[];
+  relatedProductIds?: string[];
 }
 
 export interface CartItem {
@@ -40,15 +45,25 @@ export interface Order {
   orderNumber: string;
   status: OrderStatus;
   items: OrderItem[];
-  total: number;
+  subtotal: number;
   gst: number;
-  grandTotal: number;
+  deliveryFee?: number;
+  total: number;
   deliveryMethod: 'delivery' | 'pickup';
   deliveryAddress?: string;
-  branchId?: string;
-  placedAt: string;
+  branch?: { id: string; name: string; address: string; phone: string };
+  date: string;
+  eta?: string;
   estimatedDelivery?: string;
-  trackingEvents: TrackingEvent[];
+  driverName?: string;
+  driverPhone?: string;
+  driverLat?: number;
+  driverLng?: number;
+  destinationLat?: number;
+  destinationLng?: number;
+  invoiceNumber?: string;
+  timeline?: TrackingEvent[];
+  trackingEvents?: TrackingEvent[];
 }
 
 export type OrderStatus =
@@ -56,6 +71,7 @@ export type OrderStatus =
   | 'scheduled'
   | 'dispatched'
   | 'en-route'
+  | 'enroute'
   | 'delivered'
   | 'cancelled';
 

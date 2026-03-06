@@ -13,7 +13,7 @@ interface Props {
 }
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function RecentOrderRow({ order, onPress }: Props) {
@@ -25,13 +25,13 @@ export default function RecentOrderRow({ order, onPress }: Props) {
         <MaterialIcons
           name={order.deliveryMethod === 'pickup' ? 'store' : 'local-shipping'}
           size={20}
-          color={Colors.brand.red}
+          color={Colors.brand.blue}
         />
       </View>
       <View style={styles.content}>
         <Text style={[Typography.h4, styles.orderNumber]}>{order.orderNumber}</Text>
         <Text style={[Typography.caption, styles.meta]}>
-          {itemCount} item{itemCount !== 1 ? 's' : ''} | {formatCurrency(order.grandTotal)}
+          {itemCount} item{itemCount !== 1 ? 's' : ''} | {formatCurrency(order.total)}
         </Text>
       </View>
       <StatusPill status={order.status} />
@@ -45,13 +45,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: Spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.dark.borderFaint,
+    borderBottomColor: Colors.light.borderFaint,
   },
   iconBox: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.brand.blueFaded,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: Spacing.md,

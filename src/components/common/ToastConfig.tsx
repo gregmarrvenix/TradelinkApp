@@ -45,14 +45,14 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     borderLeftWidth: 4,
     marginHorizontal: Spacing.lg,
     padding: Spacing.md,
     gap: Spacing.md,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.borderFaint,
   },
   iconBox: {
     width: 36,

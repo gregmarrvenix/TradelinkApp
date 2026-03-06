@@ -11,7 +11,7 @@ interface Props {
 }
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function ListItemRow({ item }: Props) {
@@ -33,7 +33,7 @@ export default function ListItemRow({ item }: Props) {
         <Text style={[Typography.h4, styles.qty]}>{item.quantity}</Text>
       </View>
       <View style={styles.priceCol}>
-        <Text style={[Typography.h4, { color: Colors.brand.red }]}>
+        <Text style={[Typography.h4, { color: Colors.brand.blue }]}>
           {formatCurrency(lineTotal)}
         </Text>
         <Text style={[Typography.caption, styles.unitPrice]}>
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: Spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.dark.borderFaint,
+    borderBottomColor: Colors.light.borderFaint,
   },
   imageBox: {
     width: 40,
     height: 40,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',

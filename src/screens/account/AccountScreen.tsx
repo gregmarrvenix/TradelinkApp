@@ -105,8 +105,8 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
           transition={{ type: 'timing', duration: 400 }}
         >
           <View style={styles.profileSection}>
-            <View style={[styles.avatar, { backgroundColor: Colors.brand.red + '33' }]}>
-              <Text style={[Typography.display2, { color: Colors.brand.red }]}>{initials}</Text>
+            <View style={[styles.avatar, { backgroundColor: Colors.brand.blue + '33' }]}>
+              <Text style={[Typography.display2, { color: Colors.brand.blue }]}>{initials}</Text>
             </View>
             <Text style={[Typography.h2, { color: colors.textPrimary, marginTop: Spacing.md }]}>
               {displayUser?.name ?? 'Trade User'}
@@ -138,7 +138,7 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
                 width={null}
                 height={8}
                 borderRadius={4}
-                color={Colors.brand.red}
+                color={Colors.brand.blue}
                 unfilledColor={colors.surface2}
                 borderWidth={0}
               />

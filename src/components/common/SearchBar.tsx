@@ -24,7 +24,7 @@ export default function SearchBar({
 
   return (
     <View style={styles.container}>
-      <MaterialIcons name="search" size={20} color={Colors.text.secondary} style={styles.icon} />
+      <MaterialIcons name="search" size={20} color={Colors.text.tertiary} style={styles.icon} />
       <TextInput
         ref={inputRef}
         value={value}
@@ -45,7 +45,7 @@ export default function SearchBar({
       )}
       {onScanPress && (
         <TouchableOpacity onPress={onScanPress} style={styles.scanBtn}>
-          <MaterialIcons name="qr-code-scanner" size={22} color={Colors.brand.red} />
+          <MaterialIcons name="qr-code-scanner" size={22} color={Colors.brand.blue} />
         </TouchableOpacity>
       )}
     </View>
@@ -56,12 +56,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     paddingHorizontal: Spacing.md,
     height: 48,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.border,
   },
   icon: { marginRight: Spacing.sm },
   input: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     padding: 4,
     marginLeft: Spacing.sm,
     borderLeftWidth: 1,
-    borderLeftColor: Colors.dark.border,
+    borderLeftColor: Colors.light.border,
     paddingLeft: Spacing.md,
   },
 });

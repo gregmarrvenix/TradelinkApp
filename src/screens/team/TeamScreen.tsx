@@ -25,7 +25,7 @@ import type { TeamScreenProps } from '../../navigation/types';
 import type { TeamMember } from '../../types';
 
 const ROLE_COLORS: Record<string, string> = {
-  admin: Colors.brand.red,
+  admin: Colors.brand.blue,
   buyer: Colors.info,
   viewer: Colors.text.tertiary,
 };
@@ -136,8 +136,8 @@ export default function TeamScreen(_props: TeamScreenProps) {
                 value={perms.canOrder}
                 onValueChange={() => togglePerm(item.id, 'canOrder', perms.canOrder)}
                 disabled={isYou || !isCurrentUserAdmin}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={perms.canOrder ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={perms.canOrder ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
             <View style={styles.permRow}>
@@ -146,8 +146,8 @@ export default function TeamScreen(_props: TeamScreenProps) {
                 value={perms.canViewCosts}
                 onValueChange={() => togglePerm(item.id, 'canViewCosts', perms.canViewCosts)}
                 disabled={isYou || !isCurrentUserAdmin}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={perms.canViewCosts ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={perms.canViewCosts ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
             <View style={styles.permRow}>
@@ -156,8 +156,8 @@ export default function TeamScreen(_props: TeamScreenProps) {
                 value={perms.canManage}
                 onValueChange={() => togglePerm(item.id, 'canManage', perms.canManage)}
                 disabled={isYou || !isCurrentUserAdmin}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={perms.canManage ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={perms.canManage ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
           </View>
@@ -182,7 +182,7 @@ export default function TeamScreen(_props: TeamScreenProps) {
       <View style={styles.header}>
         <Text style={[Typography.h1, { color: colors.textPrimary }]}>Team</Text>
         <TouchableOpacity
-          style={[styles.inviteBtn, { backgroundColor: Colors.brand.red }]}
+          style={[styles.inviteBtn, { backgroundColor: Colors.brand.blue }]}
           onPress={handleInvite}
           activeOpacity={0.8}
         >
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   youBadge: {
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,

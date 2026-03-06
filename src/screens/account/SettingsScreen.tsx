@@ -79,8 +79,8 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
                   triggerHaptic('impactLight');
                   toggleTheme();
                 }}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={isDark ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={isDark ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
           </Card>
@@ -105,8 +105,8 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
               <Switch
                 value={biometricEnabled}
                 onValueChange={() => toggleWithHaptic(setBiometricEnabled, biometricEnabled)}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={biometricEnabled ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={biometricEnabled ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
             <TouchableOpacity
@@ -143,8 +143,8 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
               <Switch
                 value={pushEnabled}
                 onValueChange={() => toggleWithHaptic(setPushEnabled, pushEnabled)}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={pushEnabled ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={pushEnabled ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
             <View style={[styles.settingRow, { borderBottomWidth: 1, borderBottomColor: colors.borderFaint }]}>
@@ -154,8 +154,8 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
               <Switch
                 value={orderUpdates}
                 onValueChange={() => toggleWithHaptic(setOrderUpdates, orderUpdates)}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={orderUpdates ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={orderUpdates ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
             <View style={styles.settingRow}>
@@ -165,8 +165,8 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
               <Switch
                 value={promotional}
                 onValueChange={() => toggleWithHaptic(setPromotional, promotional)}
-                trackColor={{ false: colors.surface3, true: Colors.brand.red + '88' }}
-                thumbColor={promotional ? Colors.brand.red : colors.textTertiary}
+                trackColor={{ false: colors.surface3, true: Colors.brand.blue + '88' }}
+                thumbColor={promotional ? Colors.brand.blue : colors.textTertiary}
               />
             </View>
           </Card>

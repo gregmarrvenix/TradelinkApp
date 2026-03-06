@@ -6,7 +6,7 @@ export const Bar = (props: any) => {
     style: [
       {
         height: 8,
-        backgroundColor: '#3A3A3A',
+        backgroundColor: '#E6E9EE',
         borderRadius: 4,
         overflow: 'hidden',
       },
@@ -17,7 +17,7 @@ export const Bar = (props: any) => {
       style: {
         height: '100%',
         width: `${(props.progress || 0) * 100}%`,
-        backgroundColor: props.color || '#D0021B',
+        backgroundColor: props.color || '#1B4F7C',
         borderRadius: 4,
       },
     })

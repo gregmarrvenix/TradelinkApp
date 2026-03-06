@@ -24,7 +24,7 @@ import type { OrderDetailScreenProps } from '../../navigation/types';
 import type { OrderStatus } from '../../types';
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 const STATUS_BANNER: Record<string, { icon: string; message: string; color: string }> = {
@@ -82,12 +82,12 @@ export default function OrderDetailScreen({ route, navigation }: OrderDetailScre
 
   const timelineSteps = useMemo(() => {
     if (!order) return [];
-    return buildTimelineSteps(order.status, order.trackingEvents);
+    return buildTimelineSteps(order.status, order.timeline ?? order.trackingEvents ?? []);
   }, [order]);
 
   const dateStr = useMemo(() => {
     if (!order) return '';
-    return new Date(order.placedAt).toLocaleDateString('en-AU', {
+    return new Date(order.date).toLocaleDateString('en-AU', {
       weekday: 'short',
       day: 'numeric',
       month: 'long',
@@ -98,7 +98,7 @@ export default function OrderDetailScreen({ route, navigation }: OrderDetailScre
   if (isLoading) {
     return (
       <View style={[styles.container, styles.centered, { backgroundColor: colors.bg }]}>
-        <ActivityIndicator size="large" color={Colors.brand.red} />
+        <ActivityIndicator size="large" color={Colors.brand.blue} />
       </View>
     );
   }
@@ -229,8 +229,8 @@ export default function OrderDetailScreen({ route, navigation }: OrderDetailScre
             <View style={[styles.priceDivider, { backgroundColor: colors.border }]} />
             <View style={styles.pricingRow}>
               <Text style={[Typography.h3, { color: colors.textPrimary }]}>Total (inc. GST)</Text>
-              <Text style={[Typography.h3, { color: Colors.brand.red }]}>
-                {formatCurrency(order.grandTotal)}
+              <Text style={[Typography.h3, { color: Colors.brand.blue }]}>
+                {formatCurrency(order.total)}
               </Text>
             </View>
           </Card>
@@ -284,7 +284,7 @@ export default function OrderDetailScreen({ route, navigation }: OrderDetailScre
             <Text style={[Typography.h4, { color: colors.textPrimary, marginBottom: Spacing.md }]}>
               Order Information
             </Text>
-            <DetailRow icon="tag" label="Order Number" value={order.orderNumber} colors={colors} />
+            <DetailRow icon="label" label="Order Number" value={order.orderNumber} colors={colors} />
             <DetailRow icon="calendar-today" label="Placed" value={dateStr} colors={colors} />
           </Card>
         </MotiView>

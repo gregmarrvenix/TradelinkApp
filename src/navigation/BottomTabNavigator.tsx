@@ -20,7 +20,7 @@ function TabIcon({ name, focused, badgeCount }: { name: string; focused: boolean
       <MaterialIcons
         name={name}
         size={24}
-        color={focused ? Colors.brand.red : colors.textSecondary}
+        color={focused ? Colors.brand.blue : colors.textSecondary}
       />
       {badgeCount ? (
         <View style={iconStyles.badge}>
@@ -37,7 +37,7 @@ const iconStyles = StyleSheet.create({
     position: 'absolute',
     top: -4,
     right: -10,
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.accent,
     borderRadius: 8,
     width: 16,
     height: 16,
@@ -63,7 +63,7 @@ export default function BottomTabNavigator() {
           paddingBottom: Platform.OS === 'android' ? 8 : 24,
           paddingTop: 8,
         },
-        tabBarActiveTintColor: Colors.brand.red,
+        tabBarActiveTintColor: Colors.brand.blue,
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
       }}

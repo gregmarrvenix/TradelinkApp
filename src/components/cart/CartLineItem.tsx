@@ -14,7 +14,7 @@ interface Props {
 }
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function CartLineItem({ item, onIncrement, onDecrement, onRemove }: Props) {
@@ -59,7 +59,7 @@ export default function CartLineItem({ item, onIncrement, onDecrement, onRemove 
             <Text style={[Typography.caption, styles.unitPrice]}>
               {formatCurrency(item.product.price)} ea
             </Text>
-            <Text style={[Typography.h4, { color: Colors.brand.red }]}>
+            <Text style={[Typography.h4, { color: Colors.brand.blue }]}>
               {formatCurrency(lineTotal)}
             </Text>
           </View>
@@ -72,16 +72,16 @@ export default function CartLineItem({ item, onIncrement, onDecrement, onRemove 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.borderFaint,
     overflow: 'hidden',
     marginBottom: Spacing.sm,
   },
   imageBox: {
     width: 64,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -105,10 +105,10 @@ const styles = StyleSheet.create({
   qtyControls: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     borderRadius: Radius.sm,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.border,
   },
   qtyBtn: {
     width: 32,

@@ -23,7 +23,7 @@ import { Spacing, Radius } from '../../theme/spacing';
 import type { InvoiceDetailScreenProps } from '../../navigation/types';
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function formatDate(dateStr: string) {
@@ -96,7 +96,7 @@ export default function InvoiceDetailScreen({ route, navigation }: InvoiceDetail
             </View>
             <View style={styles.infoRow}>
               <Text style={[Typography.caption, { color: colors.textSecondary }]}>Order</Text>
-              <Text style={[Typography.body, { color: Colors.brand.red }]}>ORD-{invoiceId.slice(-4)}</Text>
+              <Text style={[Typography.body, { color: Colors.brand.blue }]}>ORD-{invoiceId.slice(-4)}</Text>
             </View>
           </Card>
         </MotiView>
@@ -173,7 +173,7 @@ export default function InvoiceDetailScreen({ route, navigation }: InvoiceDetail
             <View style={[styles.totalDivider, { backgroundColor: colors.border }]} />
             <View style={styles.priceRow}>
               <Text style={[Typography.h3, { color: colors.textPrimary }]}>Total</Text>
-              <Text style={[Typography.price, { color: Colors.brand.red, fontWeight: '800' }]}>
+              <Text style={[Typography.price, { color: Colors.brand.blue, fontWeight: '800' }]}>
                 {formatCurrency(invoice.total)}
               </Text>
             </View>
@@ -235,7 +235,7 @@ export default function InvoiceDetailScreen({ route, navigation }: InvoiceDetail
               Toast.show({ type: 'info', text1: 'Download', text2: 'PDF download coming soon' })
             }
             fullWidth
-            icon={<MaterialIcons name="picture-as-pdf" size={18} color={Colors.brand.red} />}
+            icon={<MaterialIcons name="picture-as-pdf" size={18} color={Colors.brand.blue} />}
           />
         </View>
 

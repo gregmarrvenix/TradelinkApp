@@ -26,7 +26,7 @@ import type { ListDetailScreenProps } from '../../navigation/types';
 import type { CartItem } from '../../types';
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function ListDetailScreen({ route, navigation }: ListDetailScreenProps) {
@@ -118,7 +118,7 @@ export default function ListDetailScreen({ route, navigation }: ListDetailScreen
         <View style={[styles.summaryDivider, { backgroundColor: colors.border }]} />
         <View style={styles.summaryItem}>
           <Text style={[Typography.label, { color: colors.textSecondary }]}>Est. Total</Text>
-          <Text style={[Typography.h3, { color: Colors.brand.red }]}>
+          <Text style={[Typography.h3, { color: Colors.brand.blue }]}>
             {formatCurrency(estimatedTotal)}
           </Text>
         </View>

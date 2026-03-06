@@ -87,7 +87,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
   );
 
   const activeDelivery = useMemo(
-    () => orders?.find((o) => o.status === 'en-route'),
+    () => orders?.find((o) => o.status === 'en-route' || o.status === 'enroute'),
     [orders],
   );
 
@@ -112,37 +112,37 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
       {
         icon: 'add-shopping-cart',
         label: 'New Order',
-        color: Colors.brand.red,
+        color: Colors.brand.accent,
         onPress: () => nav.navigate('CatalogueTab', { screen: 'Catalogue' }),
       },
       {
         icon: 'qr-code-scanner',
         label: 'Scan',
-        color: Colors.info,
+        color: Colors.brand.blueLight,
         onPress: () => navigation.navigate('BarcodeScan'),
       },
       {
         icon: 'list-alt',
         label: 'My Lists',
-        color: Colors.success,
+        color: Colors.brand.blue,
         onPress: () => nav.navigate('AccountTab', { screen: 'Lists' }),
       },
       {
         icon: 'request-quote',
         label: 'Quotes',
-        color: Colors.warning,
+        color: Colors.brand.blueDark,
         onPress: () => nav.navigate('AccountTab', { screen: 'Quotes' }),
       },
       {
         icon: 'receipt-long',
         label: 'Invoices',
-        color: '#9B59B6',
+        color: Colors.brand.blueLight,
         onPress: () => nav.navigate('AccountTab', { screen: 'Invoices' }),
       },
       {
         icon: 'store',
         label: 'Branches',
-        color: '#16A085',
+        color: Colors.brand.blue,
         onPress: () => nav.navigate('AccountTab', { screen: 'BranchFinder' }),
       },
     ],
@@ -197,8 +197,8 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={Colors.brand.red}
-            colors={[Colors.brand.red]}
+            tintColor={Colors.brand.blue}
+            colors={[Colors.brand.blue]}
           />
         }
       >
@@ -249,7 +249,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
               <ActiveDeliveryCard
                 orderNumber={activeDelivery.orderNumber}
                 status={activeDelivery.status}
-                eta={activeDelivery.estimatedDelivery}
+                eta={activeDelivery.eta ?? activeDelivery.estimatedDelivery}
                 deliveryMethod={activeDelivery.deliveryMethod}
                 onPress={() =>
                   navigation.navigate('TrackingScreen', { orderId: activeDelivery.id })
@@ -292,7 +292,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
                   <View
                     style={[
                       styles.promoCard,
-                      { backgroundColor: Colors.brand.red },
+                      { backgroundColor: Colors.brand.blue },
                     ]}
                   >
                     <Text style={[Typography.h3, { color: Colors.white }]}>
@@ -304,15 +304,8 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
                         { color: 'rgba(255,255,255,0.8)', marginTop: Spacing.xs },
                       ]}
                     >
-                      {item.description}
+                      {item.subtitle ?? item.description}
                     </Text>
-                    {item.discount && (
-                      <View style={styles.promoBadge}>
-                        <Text style={[Typography.label, { color: Colors.white }]}>
-                          {item.discount}
-                        </Text>
-                      </View>
-                    )}
                     <TouchableOpacity
                       style={styles.promoCta}
                       activeOpacity={0.8}
@@ -320,7 +313,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
                         nav.navigate('CatalogueTab', { screen: 'Catalogue' })
                       }
                     >
-                      <Text style={[Typography.label, { color: Colors.brand.red }]}>
+                      <Text style={[Typography.label, { color: Colors.brand.blue }]}>
                         Shop Now
                       </Text>
                     </TouchableOpacity>
@@ -336,7 +329,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
                         styles.dot,
                         {
                           backgroundColor:
-                            i === promoIndex ? Colors.brand.red : colors.border,
+                            i === promoIndex ? Colors.brand.blue : colors.border,
                         },
                       ]}
                     />
@@ -358,7 +351,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
                 onPress={() => nav.navigate('OrdersTab', { screen: 'Orders' })}
                 activeOpacity={0.7}
               >
-                <Text style={[Typography.label, { color: Colors.brand.red }]}>
+                <Text style={[Typography.label, { color: Colors.brand.blueLight }]}>
                   View All &rarr;
                 </Text>
               </TouchableOpacity>
@@ -404,7 +397,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
                   width={null}
                   height={8}
                   borderRadius={4}
-                  color={Colors.brand.red}
+                  color={Colors.brand.blue}
                   unfilledColor={colors.surface2}
                   borderWidth={0}
                 />
@@ -497,7 +490,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   retryBtn: {
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
     paddingHorizontal: Spacing.xl,
     paddingVertical: Spacing.md,
     borderRadius: Radius.sm,

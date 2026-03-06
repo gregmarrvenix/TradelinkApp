@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 99,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.border,
   },
   chipSelected: {
-    backgroundColor: Colors.brand.red,
-    borderColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
+    borderColor: Colors.brand.blue,
   },
 });

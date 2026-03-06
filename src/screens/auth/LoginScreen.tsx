@@ -178,7 +178,7 @@ export default function LoginScreen(_props: LoginScreenProps) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.dark.bg,
+    backgroundColor: Colors.light.bg,
   },
   flex: {
     flex: 1,
@@ -194,11 +194,11 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.huge,
   },
   brandText: {
-    color: Colors.white,
+    color: Colors.brand.blue,
     fontWeight: '800',
   },
   tagline: {
-    color: Colors.white,
+    color: Colors.text.secondary,
     opacity: 0.7,
     marginTop: Spacing.sm,
   },
@@ -213,9 +213,9 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xs,
   },
   input: {
-    backgroundColor: Colors.dark.surface3,
+    backgroundColor: Colors.light.surface,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.border,
     borderRadius: Radius.md,
     height: 48,
     paddingHorizontal: Spacing.lg,
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.sm,
   },
   forgotText: {
-    color: Colors.brand.red,
+    color: Colors.brand.blueLight,
   },
   footerText: {
     color: Colors.text.tertiary,

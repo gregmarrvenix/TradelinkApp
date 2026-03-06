@@ -15,7 +15,7 @@ export default function SplashScreen({ navigation }: SplashScreenProps) {
 
   return (
     <LinearGradient
-      colors={['#0F0F0F', '#1A0005', '#D0021B']}
+      colors={['#F4F6F9', '#E0E8F0', '#1B4F7C']}
       style={styles.container}
     >
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />

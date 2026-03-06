@@ -13,7 +13,7 @@ interface Props {
 }
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function ListCard({ list, onPress }: Props) {
@@ -26,7 +26,7 @@ export default function ListCard({ list, onPress }: Props) {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
       <View style={styles.iconBox}>
-        <MaterialIcons name="list-alt" size={24} color={Colors.brand.red} />
+        <MaterialIcons name="list-alt" size={24} color={Colors.brand.blue} />
       </View>
       <View style={styles.content}>
         <Text style={[Typography.h4, styles.name]}>{list.name}</Text>
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.borderFaint,
     padding: Spacing.lg,
     marginBottom: Spacing.sm,
     ...Shadows.sm,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: Colors.brand.redFaded + '22',
+    backgroundColor: Colors.brand.blueFaded,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: Spacing.md,

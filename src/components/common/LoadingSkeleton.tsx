@@ -14,8 +14,8 @@ interface Props {
 function CardSkeleton() {
   return (
     <SkeletonPlaceholder
-      backgroundColor={Colors.dark.surface2}
-      highlightColor={Colors.dark.surface3}
+      backgroundColor={Colors.light.surface2}
+      highlightColor={Colors.light.surface3}
     >
       <View style={skeletonStyles.card}>
         <View style={skeletonStyles.cardImage} />
@@ -32,8 +32,8 @@ function CardSkeleton() {
 function ListItemSkeleton() {
   return (
     <SkeletonPlaceholder
-      backgroundColor={Colors.dark.surface2}
-      highlightColor={Colors.dark.surface3}
+      backgroundColor={Colors.light.surface2}
+      highlightColor={Colors.light.surface3}
     >
       <View style={skeletonStyles.listItem}>
         <View style={skeletonStyles.listAvatar} />
@@ -49,8 +49,8 @@ function ListItemSkeleton() {
 function ProductCardSkeleton() {
   return (
     <SkeletonPlaceholder
-      backgroundColor={Colors.dark.surface2}
-      highlightColor={Colors.dark.surface3}
+      backgroundColor={Colors.light.surface2}
+      highlightColor={Colors.light.surface3}
     >
       <View style={skeletonStyles.productCard}>
         <View style={skeletonStyles.productImage} />

@@ -85,7 +85,7 @@ export default function OrdersScreen({ navigation }: OrdersScreenProps) {
               size="sm"
               icon={
                 <View>
-                  <Text style={{ color: Colors.brand.red, fontSize: 14 }}>
+                  <Text style={{ color: Colors.brand.blue, fontSize: 14 }}>
                     {/* Icon handled by Button */}
                   </Text>
                 </View>
@@ -145,8 +145,8 @@ export default function OrdersScreen({ navigation }: OrdersScreenProps) {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              tintColor={Colors.brand.red}
-              colors={[Colors.brand.red]}
+              tintColor={Colors.brand.blue}
+              colors={[Colors.brand.blue]}
             />
           }
         />

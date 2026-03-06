@@ -31,7 +31,7 @@ const FILTERS = ['All', 'Unpaid', 'Paid'] as const;
 type FilterType = (typeof FILTERS)[number];
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function formatDate(dateStr: string) {
@@ -110,7 +110,7 @@ export default function InvoicesScreen({ navigation }: InvoicesScreenProps) {
                   </View>
                 )}
               </View>
-              <Text style={[Typography.price, { color: Colors.brand.red }]}>
+              <Text style={[Typography.price, { color: Colors.brand.blue }]}>
                 {formatCurrency(item.total)}
               </Text>
             </View>
@@ -144,7 +144,7 @@ export default function InvoicesScreen({ navigation }: InvoicesScreenProps) {
       >
         <View style={[styles.balanceCard, { borderColor: colors.border }]}>
           <Text style={[Typography.label, { color: Colors.text.secondary }]}>Account Balance</Text>
-          <Text style={[Typography.priceLg, { color: Colors.brand.red, marginTop: Spacing.xs }]}>
+          <Text style={[Typography.priceLg, { color: Colors.brand.blue, marginTop: Spacing.xs }]}>
             $8,432.50
           </Text>
           <Text style={[Typography.caption, { color: Colors.text.secondary, marginTop: Spacing.xs }]}>
@@ -156,8 +156,8 @@ export default function InvoicesScreen({ navigation }: InvoicesScreenProps) {
               width={null}
               height={8}
               borderRadius={4}
-              color={Colors.brand.red}
-              unfilledColor={Colors.dark.surface3}
+              color={Colors.brand.blue}
+              unfilledColor={Colors.light.surface3}
               borderWidth={0}
             />
           </View>
@@ -195,8 +195,8 @@ export default function InvoicesScreen({ navigation }: InvoicesScreenProps) {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={Colors.brand.red}
-            colors={[Colors.brand.red]}
+            tintColor={Colors.brand.blue}
+            colors={[Colors.brand.blue]}
           />
         }
         ListEmptyComponent={
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   },
   balanceCard: {
     marginHorizontal: Spacing.screen,
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     borderWidth: 1,
     padding: Spacing.lg,

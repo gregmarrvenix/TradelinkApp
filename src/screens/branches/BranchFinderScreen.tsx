@@ -22,7 +22,7 @@ import { Shadows } from '../../theme/shadows';
 import type { BranchFinderScreenProps } from '../../navigation/types';
 import type { Branch } from '../../types';
 
-const HOME_BRANCH_ID = 'branch-1';
+// No hardcoded home branch ID - use isHomeBranch from API
 
 function getDistance(lat: number, lng: number): number {
   const baseLat = -33.8688;
@@ -72,7 +72,7 @@ export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
 
   const renderItem = useCallback(
     ({ item, index }: { item: Branch & { distance: number }; index: number }) => {
-      const isHome = item.id === HOME_BRANCH_ID;
+      const isHome = (item as any).isHomeBranch;
       return (
         <MotiView
           from={{ opacity: 0, translateY: 12 }}
@@ -98,9 +98,16 @@ export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
               </View>
             </View>
 
-            <Text style={[Typography.caption, { color: Colors.brand.red, marginBottom: Spacing.xs }]}>
-              {item.services.join(' + ')}
-            </Text>
+            {item.services && item.services.length > 0 && (
+              <Text style={[Typography.caption, { color: Colors.brand.blue, marginBottom: Spacing.xs }]}>
+                {item.services.join(' + ')}
+              </Text>
+            )}
+            {item.type && !item.services && (
+              <Text style={[Typography.caption, { color: Colors.brand.blue, marginBottom: Spacing.xs }]}>
+                {item.type}
+              </Text>
+            )}
 
             <TouchableOpacity onPress={() => handleDirections(item.address)} activeOpacity={0.7}>
               <View style={styles.infoRow}>
@@ -114,7 +121,7 @@ export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
             <TouchableOpacity onPress={() => handleCall(item.phone)} activeOpacity={0.7}>
               <View style={styles.infoRow}>
                 <MaterialIcons name="phone" size={16} color={colors.textTertiary} />
-                <Text style={[Typography.bodySm, { color: Colors.brand.red, marginLeft: Spacing.xs }]}>
+                <Text style={[Typography.bodySm, { color: Colors.brand.blue, marginLeft: Spacing.xs }]}>
                   {item.phone}
                 </Text>
               </View>
@@ -130,7 +137,7 @@ export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
             <View style={styles.distanceRow}>
               <MaterialIcons name="near-me" size={14} color={colors.textTertiary} />
               <Text style={[Typography.caption, { color: colors.textSecondary, marginLeft: Spacing.xs }]}>
-                {item.distance.toFixed(1)} km away
+                {(parseFloat(item.distance) || 0).toFixed(1)} km away
               </Text>
             </View>
           </View>
@@ -156,9 +163,9 @@ export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
         <Text style={[Typography.h1, { color: colors.textPrimary }]}>Find a Branch</Text>
       </View>
 
-      <View style={[styles.mapPlaceholder, { backgroundColor: Colors.dark.surface2, borderColor: colors.border }]}>
+      <View style={[styles.mapPlaceholder, { backgroundColor: Colors.light.surface2, borderColor: colors.border }]}>
         <View style={styles.mapContent}>
-          <MaterialIcons name="place" size={48} color={Colors.brand.red} />
+          <MaterialIcons name="place" size={48} color={Colors.brand.blue} />
           <Text style={[Typography.h3, { color: colors.textSecondary, marginTop: Spacing.sm }]}>
             Map View
           </Text>
@@ -182,7 +189,7 @@ export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
               <MaterialIcons
                 name={isHome ? 'star' : 'fiber-manual-record'}
                 size={isHome ? 18 : 12}
-                color={Colors.brand.red}
+                color={Colors.brand.blue}
               />
               <Text style={[Typography.overline, { color: colors.textSecondary }]}>
                 {b.name.split(' ')[0]}
@@ -264,7 +271,7 @@ const styles = StyleSheet.create({
   homeBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
@@ -291,6 +298,6 @@ const styles = StyleSheet.create({
     marginTop: Spacing.sm,
     paddingTop: Spacing.sm,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.05)',
+    borderTopColor: Colors.light.borderFaint,
   },
 });

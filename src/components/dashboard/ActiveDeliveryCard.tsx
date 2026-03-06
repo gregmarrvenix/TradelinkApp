@@ -24,12 +24,12 @@ export default function ActiveDeliveryCard({
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.85}>
       <LinearGradient
-        colors={['#0A1F0A', '#0F0F0F']}
+        colors={['#EDF3F9', '#FFFFFF']}
         style={styles.card}
       >
         <View style={styles.topRow}>
           <View>
-            <Text style={[Typography.overline, { color: Colors.success }]}>
+            <Text style={[Typography.overline, { color: Colors.brand.blue }]}>
               {isPickup ? 'CLICK & COLLECT' : 'DELIVERY'}
             </Text>
             <Text style={[Typography.h3, { color: Colors.text.primary, marginTop: 4 }]}>
@@ -49,7 +49,7 @@ export default function ActiveDeliveryCard({
           )}
           <View style={{ flex: 1 }} />
           <TouchableOpacity onPress={onTrack}>
-            <Text style={[Typography.label, { color: Colors.brand.red }]}>Track &rarr;</Text>
+            <Text style={[Typography.label, { color: Colors.brand.accent }]}>Track &rarr;</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: Radius.lg,
     padding: Spacing.lg,
     borderWidth: 1,
-    borderColor: Colors.success + '33',
+    borderColor: 'rgba(58, 124, 194, 0.19)',
     marginBottom: Spacing.sm,
   },
   topRow: {

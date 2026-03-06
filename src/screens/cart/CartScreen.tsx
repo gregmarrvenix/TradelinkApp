@@ -380,8 +380,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   deliveryOptionActive: {
-    backgroundColor: Colors.brand.red,
-    borderColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
+    borderColor: Colors.brand.blue,
   },
   branchSection: {
     marginTop: Spacing.md,

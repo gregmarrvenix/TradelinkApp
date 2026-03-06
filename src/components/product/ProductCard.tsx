@@ -26,7 +26,7 @@ export default function ProductCard({ product, onPress, onAddToCart, layout = 'l
           <MaterialIcons name="inventory-2" size={32} color={Colors.text.tertiary} />
         </View>
         <View style={styles.listContent}>
-          <Text style={[Typography.overline, { color: Colors.brand.red }]}>{product.brand}</Text>
+          <Text style={[Typography.overline, { color: Colors.brand.blueLight }]}>{product.brand}</Text>
           <Text style={[Typography.h4, { color: Colors.text.primary, marginTop: 2 }]} numberOfLines={2}>
             {product.name}
           </Text>
@@ -55,7 +55,7 @@ export default function ProductCard({ product, onPress, onAddToCart, layout = 'l
         <MaterialIcons name="inventory-2" size={40} color={Colors.text.tertiary} />
       </View>
       <View style={{ padding: Spacing.md }}>
-        <Text style={[Typography.overline, { color: Colors.brand.red }]}>{product.brand}</Text>
+        <Text style={[Typography.overline, { color: Colors.brand.blueLight }]}>{product.brand}</Text>
         <Text style={[Typography.body, { color: Colors.text.primary, marginTop: 4 }]} numberOfLines={2}>
           {product.name}
         </Text>
@@ -71,17 +71,17 @@ export default function ProductCard({ product, onPress, onAddToCart, layout = 'l
 const styles = StyleSheet.create({
   listCard: {
     flexDirection: 'row',
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     marginBottom: Spacing.sm,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: Colors.dark.border,
-    ...Shadows.sm,
+    borderColor: Colors.light.borderFaint,
+    ...Shadows.card,
   },
   listImageBox: {
     width: 80,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -94,24 +94,24 @@ const styles = StyleSheet.create({
   },
   addBtn: {
     width: 48,
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.accent,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  addBtnDisabled: { backgroundColor: Colors.dark.surface3 },
+  addBtnDisabled: { backgroundColor: Colors.light.surface3 },
   gridCard: {
     flex: 1,
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.borderFaint,
     margin: 4,
-    ...Shadows.sm,
+    ...Shadows.card,
   },
   gridImageBox: {
     height: 100,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     alignItems: 'center',
     justifyContent: 'center',
   },

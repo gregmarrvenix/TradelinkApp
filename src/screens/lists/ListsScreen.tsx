@@ -76,7 +76,7 @@ export default function ListsScreen({ navigation }: ListsScreenProps) {
       <View style={styles.header}>
         <Text style={[Typography.h1, { color: colors.textPrimary }]}>My Lists</Text>
         <TouchableOpacity
-          style={[styles.addBtn, { backgroundColor: Colors.brand.red }]}
+          style={[styles.addBtn, { backgroundColor: Colors.brand.blue }]}
           onPress={() => setModalVisible(true)}
           activeOpacity={0.8}
         >
@@ -94,8 +94,8 @@ export default function ListsScreen({ navigation }: ListsScreenProps) {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={Colors.brand.red}
-            colors={[Colors.brand.red]}
+            tintColor={Colors.brand.blue}
+            colors={[Colors.brand.blue]}
           />
         }
         ListEmptyComponent={

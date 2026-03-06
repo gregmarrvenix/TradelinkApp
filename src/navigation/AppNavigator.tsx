@@ -14,12 +14,12 @@ const TradelinkDarkTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: Colors.brand.red,
+    primary: Colors.brand.blue,
     background: Colors.dark.bg,
     card: Colors.dark.surface,
-    text: Colors.text.primary,
+    text: Colors.text.primaryD,
     border: Colors.dark.border,
-    notification: Colors.brand.red,
+    notification: Colors.brand.blue,
   },
 };
 
@@ -27,12 +27,12 @@ const TradelinkLightTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: Colors.brand.red,
+    primary: Colors.brand.blue,
     background: Colors.light.bg,
     card: Colors.light.surface,
-    text: Colors.text.primaryL,
+    text: Colors.text.primary,
     border: Colors.light.border,
-    notification: Colors.brand.red,
+    notification: Colors.brand.blue,
   },
 };
 

@@ -37,7 +37,7 @@ export default function BranchStockList({ branches, homeBranchId }: Props) {
                   <Text style={[Typography.body, styles.branchName]}>{item.branchName}</Text>
                   {isHome && (
                     <View style={styles.homeBadge}>
-                      <Text style={[Typography.overline, { color: Colors.brand.red }]}>HOME</Text>
+                      <Text style={[Typography.overline, { color: Colors.brand.blue }]}>HOME</Text>
                     </View>
                   )}
                 </View>
@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
   },
   branchName: { color: Colors.text.primary },
   homeBadge: {
-    backgroundColor: Colors.brand.redFaded,
+    backgroundColor: Colors.brand.blueFaded,
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
   },
   separator: {
     height: 1,
-    backgroundColor: Colors.dark.borderFaint,
+    backgroundColor: Colors.light.borderFaint,
   },
 });

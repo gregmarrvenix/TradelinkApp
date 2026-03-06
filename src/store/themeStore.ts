@@ -34,8 +34,8 @@ const darkColors: ThemeColors = {
   surface3: Colors.dark.surface3,
   border: Colors.dark.border,
   borderFaint: Colors.dark.borderFaint,
-  textPrimary: Colors.text.primary,
-  textSecondary: Colors.text.secondary,
+  textPrimary: Colors.text.primaryD,
+  textSecondary: Colors.text.secondaryD,
   textTertiary: Colors.text.tertiary,
 };
 
@@ -46,15 +46,15 @@ const lightColors: ThemeColors = {
   surface3: Colors.light.surface3,
   border: Colors.light.border,
   borderFaint: Colors.light.borderFaint,
-  textPrimary: Colors.text.primaryL,
-  textSecondary: Colors.text.secondaryL,
+  textPrimary: Colors.text.primary,
+  textSecondary: Colors.text.secondary,
   textTertiary: Colors.text.tertiary,
 };
 
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
-      mode: 'dark',
+      mode: 'light',
       setMode: (mode: Mode) => set({ mode }),
       setTheme: (mode: Mode) => set({ mode }),
       toggle: () => set({ mode: get().mode === 'dark' ? 'light' : 'dark' }),

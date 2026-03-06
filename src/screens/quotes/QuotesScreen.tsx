@@ -28,7 +28,7 @@ const FILTERS = ['All', 'Pending', 'Accepted', 'Expired'] as const;
 type FilterType = (typeof FILTERS)[number];
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function formatDate(dateStr: string) {
@@ -83,7 +83,7 @@ export default function QuotesScreen({ navigation }: QuotesScreenProps) {
             </View>
           </View>
           <View style={styles.quoteFooter}>
-            <Text style={[Typography.price, { color: Colors.brand.red }]}>
+            <Text style={[Typography.price, { color: Colors.brand.blue }]}>
               {formatCurrency(item.total)}
             </Text>
             <MaterialIcons name="chevron-right" size={20} color={colors.textTertiary} />

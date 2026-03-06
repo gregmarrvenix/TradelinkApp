@@ -21,7 +21,7 @@ export default function TrackingMap({ driverName, eta, destination }: Props) {
       <View style={styles.overlay}>
         {driverName && (
           <View style={styles.infoRow}>
-            <MaterialIcons name="local-shipping" size={18} color={Colors.brand.red} />
+            <MaterialIcons name="local-shipping" size={18} color={Colors.brand.blue} />
             <Text style={[Typography.body, styles.infoText]}>
               Driver: <Text style={styles.infoValue}>{driverName}</Text>
             </Text>
@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
     borderRadius: Radius.lg,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.border,
   },
   mapPlaceholder: {
     height: 200,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.sm,
   },
   overlay: {
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     padding: Spacing.md,
     gap: Spacing.sm,
   },

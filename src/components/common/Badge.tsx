@@ -8,7 +8,7 @@ interface Props {
   size?: 'sm' | 'md';
 }
 
-export default function Badge({ count, color = Colors.brand.red, size = 'sm' }: Props) {
+export default function Badge({ count, color = Colors.brand.accent, size = 'sm' }: Props) {
   if (count <= 0) return null;
 
   const label = count > 99 ? '99+' : String(count);

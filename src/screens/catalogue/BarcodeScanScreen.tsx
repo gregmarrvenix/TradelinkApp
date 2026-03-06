@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     left: CORNER_SIZE,
     right: CORNER_SIZE,
     height: 2,
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
     top: 0,
   },
   corner: {
@@ -357,13 +357,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: CORNER_SIZE,
     height: CORNER_WIDTH,
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
   },
   cornerV: {
     position: 'absolute',
     width: CORNER_WIDTH,
     height: CORNER_SIZE,
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
   },
   permissionView: {
     flex: 1,

@@ -35,7 +35,7 @@ type CheckoutNavProp = CompositeNavigationProp<
 >;
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function CheckoutScreen({ navigation }: CheckoutScreenProps) {
@@ -122,7 +122,7 @@ export default function CheckoutScreen({ navigation }: CheckoutScreenProps) {
               <MaterialIcons
                 name={deliveryMethod === 'delivery' ? 'local-shipping' : 'store'}
                 size={20}
-                color={Colors.brand.red}
+                color={Colors.brand.blue}
               />
               <Text style={[Typography.h4, { color: colors.textPrimary, marginLeft: Spacing.sm }]}>
                 {deliveryMethod === 'delivery' ? 'Delivery' : 'Click & Collect'}
@@ -229,7 +229,7 @@ export default function CheckoutScreen({ navigation }: CheckoutScreenProps) {
         >
           <Card style={{ backgroundColor: colors.surface, borderColor: colors.border, marginTop: Spacing.md }}>
             <View style={styles.sectionHeader}>
-              <MaterialIcons name="credit-card" size={20} color={Colors.brand.red} />
+              <MaterialIcons name="credit-card" size={20} color={Colors.brand.blue} />
               <Text style={[Typography.h4, { color: colors.textPrimary, marginLeft: Spacing.sm }]}>
                 Payment
               </Text>

@@ -14,12 +14,12 @@ interface Props {
 }
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function OrderCard({ order, onPress }: Props) {
   const itemCount = order.items.length;
-  const dateStr = new Date(order.placedAt).toLocaleDateString('en-AU', {
+  const dateStr = new Date(order.date).toLocaleDateString('en-AU', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -45,8 +45,8 @@ export default function OrderCard({ order, onPress }: Props) {
             {itemCount} item{itemCount !== 1 ? 's' : ''}
           </Text>
         </View>
-        <Text style={[Typography.h4, { color: Colors.brand.red }]}>
-          {formatCurrency(order.grandTotal)}
+        <Text style={[Typography.h4, { color: Colors.brand.blue }]}>
+          {formatCurrency(order.total)}
         </Text>
       </View>
     </TouchableOpacity>
@@ -55,13 +55,13 @@ export default function OrderCard({ order, onPress }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.borderFaint,
     padding: Spacing.lg,
     marginBottom: Spacing.sm,
-    ...Shadows.sm,
+    ...Shadows.card,
   },
   topRow: {
     flexDirection: 'row',

@@ -27,7 +27,7 @@ import type { QuoteDetailScreenProps } from '../../navigation/types';
 import type { OrderItem } from '../../types';
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function formatDate(dateStr: string) {
@@ -146,7 +146,7 @@ export default function QuoteDetailScreen({ route, navigation }: QuoteDetailScre
                   </Text>
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>
-                  <Text style={[Typography.h4, { color: Colors.brand.red }]}>
+                  <Text style={[Typography.h4, { color: Colors.brand.blue }]}>
                     {formatCurrency(item.total)}
                   </Text>
                   <Text style={[Typography.caption, { color: colors.textSecondary }]}>
@@ -166,7 +166,7 @@ export default function QuoteDetailScreen({ route, navigation }: QuoteDetailScre
           <Card style={{ backgroundColor: colors.surface, borderColor: colors.border, marginBottom: Spacing.md }}>
             <View style={styles.priceRow}>
               <Text style={[Typography.h4, { color: colors.textPrimary }]}>Trade Total</Text>
-              <Text style={[Typography.price, { color: Colors.brand.red, fontWeight: '800' }]}>
+              <Text style={[Typography.price, { color: Colors.brand.blue, fontWeight: '800' }]}>
                 {formatCurrency(tradeTotal)}
               </Text>
             </View>

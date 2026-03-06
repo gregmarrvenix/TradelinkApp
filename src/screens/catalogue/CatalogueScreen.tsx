@@ -43,7 +43,7 @@ export default function CatalogueScreen({ navigation }: CatalogueScreenProps) {
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Search bar (touchable, navigates to SearchResults) */}
         <TouchableOpacity
-          style={[styles.searchBar, { backgroundColor: colors.surface2, borderColor: colors.border }]}
+          style={[styles.searchBar, { backgroundColor: Colors.white, borderColor: colors.border }]}
           onPress={() => navigation.navigate('SearchResults', {})}
           activeOpacity={0.7}
         >
@@ -56,7 +56,7 @@ export default function CatalogueScreen({ navigation }: CatalogueScreenProps) {
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={[styles.scanBtn, { borderLeftColor: colors.border }]}
           >
-            <MaterialIcons name="qr-code-scanner" size={22} color={Colors.brand.red} />
+            <MaterialIcons name="qr-code-scanner" size={22} color={Colors.brand.blue} />
           </TouchableOpacity>
         </TouchableOpacity>
 
@@ -79,11 +79,11 @@ export default function CatalogueScreen({ navigation }: CatalogueScreenProps) {
               >
                 <TouchableOpacity
                   style={[styles.categoryCard, { backgroundColor: colors.surface, borderColor: colors.border }]}
-                  onPress={() => navigation.navigate('SearchResults', { category: cat.id })}
+                  onPress={() => navigation.navigate('SearchResults', { category: cat.name })}
                   activeOpacity={0.7}
                 >
                   <View style={[styles.categoryIcon, { backgroundColor: colors.surface2 }]}>
-                    <MaterialIcons name={cat.icon as string} size={28} color={Colors.brand.red} />
+                    <MaterialIcons name={cat.icon as string} size={28} color={Colors.brand.blue} />
                   </View>
                   <Text style={[Typography.h4, { color: colors.textPrimary, marginTop: Spacing.sm }]} numberOfLines={1}>
                     {cat.name}

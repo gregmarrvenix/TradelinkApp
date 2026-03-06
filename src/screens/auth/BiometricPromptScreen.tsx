@@ -46,7 +46,7 @@ export default function BiometricPromptScreen({
         <MaterialIcons
           name="fingerprint"
           size={80}
-          color={Colors.brand.red}
+          color={Colors.brand.blue}
         />
         <Text style={[Typography.h2, styles.heading]}>
           Use Biometrics to Sign In
@@ -72,7 +72,7 @@ export default function BiometricPromptScreen({
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.dark.bg,
+    backgroundColor: Colors.light.bg,
   },
   content: {
     flex: 1,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.xxl,
   },
   heading: {
-    color: Colors.white,
+    color: Colors.text.primary,
     textAlign: 'center',
     marginTop: Spacing.lg,
   },

@@ -57,7 +57,7 @@ export default function TrackingScreen({ route, navigation }: OrdersTrackingScre
   if (isLoading) {
     return (
       <View style={[styles.container, styles.centered, { backgroundColor: colors.bg }]}>
-        <ActivityIndicator size="large" color={Colors.brand.red} />
+        <ActivityIndicator size="large" color={Colors.brand.blue} />
       </View>
     );
   }
@@ -133,7 +133,7 @@ export default function TrackingScreen({ route, navigation }: OrdersTrackingScre
 
           {/* Delivery Address */}
           <View style={styles.addressRow}>
-            <MaterialIcons name="place" size={18} color={Colors.brand.red} />
+            <MaterialIcons name="place" size={18} color={Colors.brand.blue} />
             <Text style={[Typography.body, { color: colors.textPrimary, marginLeft: Spacing.sm, flex: 1 }]}>
               {destination}
             </Text>

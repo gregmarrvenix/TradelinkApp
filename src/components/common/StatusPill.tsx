@@ -4,19 +4,19 @@ import { Colors } from '../../theme/colors';
 import { Typography } from '../../theme/typography';
 
 const STATUS_MAP: Record<string, { label: string; color: string; bg: string }> = {
-  enroute: { label: 'En Route', color: Colors.status.enroute, bg: Colors.successBg },
-  'en-route': { label: 'En Route', color: Colors.status.enroute, bg: Colors.successBg },
-  dispatched: { label: 'Dispatched', color: Colors.status.dispatched, bg: Colors.infoBg },
-  scheduled: { label: 'Scheduled', color: Colors.status.scheduled, bg: Colors.warningBg },
-  delivered: { label: 'Delivered', color: Colors.status.delivered, bg: Colors.successBg },
-  processing: { label: 'Processing', color: Colors.status.processing, bg: '#1A0A2A' },
-  cancelled: { label: 'Cancelled', color: Colors.status.cancelled, bg: Colors.errorBg },
-  pickup: { label: 'Ready Pickup', color: Colors.status.pickup, bg: '#0A2020' },
+  enroute: { label: 'En Route', color: Colors.success, bg: Colors.successBg },
+  'en-route': { label: 'En Route', color: Colors.success, bg: Colors.successBg },
+  dispatched: { label: 'Dispatched', color: Colors.info, bg: Colors.infoBg },
+  scheduled: { label: 'Scheduled', color: Colors.warning, bg: Colors.warningBg },
+  delivered: { label: 'Delivered', color: Colors.success, bg: Colors.successBg },
+  processing: { label: 'Processing', color: '#6B5B95', bg: '#F0EDF5' },
+  cancelled: { label: 'Cancelled', color: Colors.error, bg: Colors.errorBg },
+  pickup: { label: 'Ready Pickup', color: '#2B8F8F', bg: '#E6F3F3' },
   unpaid: { label: 'Unpaid', color: Colors.warning, bg: Colors.warningBg },
   paid: { label: 'Paid', color: Colors.success, bg: Colors.successBg },
   pending: { label: 'Pending', color: Colors.warning, bg: Colors.warningBg },
   accepted: { label: 'Accepted', color: Colors.success, bg: Colors.successBg },
-  expired: { label: 'Expired', color: Colors.text.tertiary, bg: Colors.dark.surface3 },
+  expired: { label: 'Expired', color: Colors.text.tertiary, bg: Colors.light.surface3 },
   overdue: { label: 'Overdue', color: Colors.error, bg: Colors.errorBg },
 };
 
@@ -26,7 +26,7 @@ interface Props {
 }
 
 export default function StatusPill({ status, size = 'sm' }: Props) {
-  const config = STATUS_MAP[status] ?? { label: status, color: '#888', bg: '#222' };
+  const config = STATUS_MAP[status] ?? { label: status, color: '#5C6B7F', bg: '#F0F2F5' };
   return (
     <View style={[styles.pill, { backgroundColor: config.bg }, size === 'md' && styles.pillMd]}>
       <View style={[styles.dot, { backgroundColor: config.color }]} />

@@ -19,7 +19,7 @@ interface Props {
 const STATE_COLORS = {
   completed: Colors.success,
   current: Colors.info,
-  pending: Colors.dark.surface3,
+  pending: Colors.light.surface3,
 };
 
 const STATE_ICONS: Record<string, string> = {
@@ -44,7 +44,7 @@ export default function OrderTimeline({ steps }: Props) {
                 <View
                   style={[
                     styles.line,
-                    { backgroundColor: step.state === 'completed' ? Colors.success : Colors.dark.surface3 },
+                    { backgroundColor: step.state === 'completed' ? Colors.success : Colors.light.surface3 },
                   ]}
                 />
               )}

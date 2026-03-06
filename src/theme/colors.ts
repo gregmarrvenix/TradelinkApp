@@ -1,69 +1,72 @@
 export const Colors = {
   // Brand
   brand: {
-    red: '#D0021B',
-    redDark: '#A80016',
-    redLight: '#FF1A35',
-    redFaded: '#FFE8EB',
+    blue: '#1B4F7C',        // Primary brand blue - deep but not too dark
+    blueDark: '#0D3B5E',    // Darker shade for emphasis
+    blueLight: '#3A7CC2',   // Lighter interactive blue
+    blueFaded: '#EDF3F9',   // Very subtle blue tint for backgrounds
+    accent: '#E8443A',      // Red-coral accent for primary CTAs
+    accentDark: '#C93830',  // Darker accent
+    accentLight: '#FF6B5E', // Lighter accent
   },
 
-  // Dark Theme (default)
-  dark: {
-    bg: '#0F0F0F',
-    surface: '#1A1A1A',
-    surface2: '#242424',
-    surface3: '#2E2E2E',
-    border: '#3A3A3A',
-    borderFaint: '#2A2A2A',
-  },
-
-  // Light Theme
+  // Light Theme (default)
   light: {
-    bg: '#F5F5F5',
-    surface: '#FFFFFF',
-    surface2: '#F0F0F0',
-    surface3: '#E8E8E8',
-    border: '#E0E0E0',
-    borderFaint: '#EFEFEF',
+    bg: '#F4F6F9',          // Warm light gray-blue
+    surface: '#FFFFFF',     // White cards
+    surface2: '#F0F2F5',    // Slightly darker surface
+    surface3: '#E6E9EE',    // Even darker for contrast
+    border: '#DDE1E8',      // Subtle border
+    borderFaint: '#ECEEF2', // Very faint border
+  },
+
+  // Dark Theme
+  dark: {
+    bg: '#0C1B2A',
+    surface: '#152538',
+    surface2: '#1E3048',
+    surface3: '#283C55',
+    border: '#354D68',
+    borderFaint: '#253750',
   },
 
   // Text
   text: {
-    primary: '#FFFFFF',
-    secondary: '#A0A0A0',
-    tertiary: '#666666',
-    primaryL: '#1A1A1A',
-    secondaryL: '#6B6B6B',
-    inverse: '#FFFFFF',
+    primary: '#1A2B3D',      // Near-black for primary text
+    secondary: '#5C6B7F',    // Mid-gray for secondary
+    tertiary: '#8E99A8',     // Light gray for hints
+    primaryD: '#EEF2F6',     // Light text for dark theme
+    secondaryD: '#9CAAB8',   // Secondary for dark theme
+    inverse: '#FFFFFF',      // White text on dark backgrounds
   },
 
-  // Semantic
-  success: '#27AE60',
-  successBg: '#0D2818',
-  warning: '#F39C12',
-  warningBg: '#2A1F00',
-  error: '#E74C3C',
-  errorBg: '#2A0A08',
-  info: '#2980B9',
-  infoBg: '#0A1F2A',
+  // Semantic - these are the ONLY non-blue colors allowed
+  success: '#2E8B57',       // Sea green - for success/delivered
+  successBg: '#EDF7F1',     // Light green bg
+  warning: '#D4891C',       // Warm amber - for warnings
+  warningBg: '#FDF3E3',     // Light amber bg
+  error: '#D94343',         // Red - for errors
+  errorBg: '#FCEAEA',       // Light red bg
+  info: '#3A7CC2',          // Blue - for info (matches brand)
+  infoBg: '#EDF3F9',        // Light blue bg (matches brand faded)
 
   // Delivery status
   status: {
-    scheduled: '#F39C12',
-    dispatched: '#2980B9',
-    enroute: '#27AE60',
-    delivered: '#27AE60',
-    processing: '#9B59B6',
-    cancelled: '#E74C3C',
-    pickup: '#16A085',
+    scheduled: '#D4891C',    // Amber
+    dispatched: '#3A7CC2',   // Blue
+    enroute: '#2E8B57',      // Green
+    delivered: '#2E8B57',    // Green
+    processing: '#6B5B95',   // Muted purple
+    cancelled: '#D94343',    // Red
+    pickup: '#2B8F8F',       // Teal
   },
 
   // Utility
   white: '#FFFFFF',
   black: '#000000',
   transparent: 'transparent',
-  overlay: 'rgba(0,0,0,0.6)',
-  overlayLight: 'rgba(0,0,0,0.2)',
+  overlay: 'rgba(12, 27, 42, 0.5)',
+  overlayLight: 'rgba(12, 27, 42, 0.08)',
 };
 
 export const C = Colors;

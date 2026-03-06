@@ -11,7 +11,7 @@ interface Props {
 }
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function PriceTag({ tradePrice, rrp, size = 'md', showSavings }: Props) {
@@ -26,7 +26,7 @@ export default function PriceTag({ tradePrice, rrp, size = 'md', showSavings }: 
 
   return (
     <View>
-      <Text style={[priceStyle, { color: Colors.brand.red, fontWeight: '800' }]}>
+      <Text style={[priceStyle, { color: Colors.brand.blue, fontWeight: '800' }]}>
         {formatCurrency(tradePrice)}
       </Text>
       {rrp != null && rrp > 0 && (

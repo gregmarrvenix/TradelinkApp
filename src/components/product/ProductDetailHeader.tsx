@@ -19,7 +19,7 @@ export default function ProductDetailHeader({ product }: Props) {
         <MaterialIcons name="inventory-2" size={64} color={Colors.text.tertiary} />
       </View>
       <View style={styles.info}>
-        <Text style={[Typography.overline, { color: Colors.brand.red }]}>{product.brand}</Text>
+        <Text style={[Typography.overline, { color: Colors.brand.blue }]}>{product.brand}</Text>
         <Text style={[Typography.h1, styles.name]}>{product.name}</Text>
         <Text style={[Typography.caption, styles.sku]}>SKU: {product.sku}</Text>
         <View style={styles.priceRow}>
@@ -37,7 +37,7 @@ export default function ProductDetailHeader({ product }: Props) {
 const styles = StyleSheet.create({
   imageBox: {
     height: 220,
-    backgroundColor: Colors.dark.surface2,
+    backgroundColor: Colors.light.surface2,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: Radius.lg,

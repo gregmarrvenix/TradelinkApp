@@ -100,7 +100,7 @@ export default function SearchResultsScreen({ navigation, route }: SearchResults
       {/* Category filter chips */}
       <View style={styles.filterBar}>
         <FlatList
-          data={[{ id: undefined, name: 'All' }, ...(categories ?? []).map((c) => ({ id: c.id, name: c.name }))]}
+          data={[{ id: undefined, name: 'All' }, ...(categories ?? []).map((c) => ({ id: c.name, name: c.name }))]}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id ?? 'all'}
@@ -150,10 +150,10 @@ export default function SearchResultsScreen({ navigation, route }: SearchResults
               style={[styles.sortMenuItem, sortBy === opt.key && { backgroundColor: colors.surface2 }]}
               onPress={() => { setSortBy(opt.key); setShowSortMenu(false); }}
             >
-              <Text style={[Typography.body, { color: sortBy === opt.key ? Colors.brand.red : colors.textPrimary }]}>
+              <Text style={[Typography.body, { color: sortBy === opt.key ? Colors.brand.blue : colors.textPrimary }]}>
                 {opt.label}
               </Text>
-              {sortBy === opt.key && <MaterialIcons name="check" size={16} color={Colors.brand.red} />}
+              {sortBy === opt.key && <MaterialIcons name="check" size={16} color={Colors.brand.blue} />}
             </TouchableOpacity>
           ))}
         </View>

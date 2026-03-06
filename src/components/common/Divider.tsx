@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: Colors.dark.border,
+    backgroundColor: Colors.light.border,
   },
   label: {
     color: Colors.text.tertiary,

@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: Colors.brand.red,
+    backgroundColor: Colors.brand.blue,
     marginLeft: Spacing.sm,
   },
   emptyContainer: {

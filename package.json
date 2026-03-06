@@ -9,7 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "web": "webpack serve --mode development --config webpack.config.js",
-    "build:web": "webpack --mode production --config webpack.config.js"
+    "build:web": "NODE_ENV=production webpack --mode production --config webpack.config.js"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.8",

@@ -12,7 +12,7 @@ interface Props {
 }
 
 function formatCurrency(n: number) {
-  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '$' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function SummaryRow({ label, value, bold, red }: { label: string; value: string; bold?: boolean; red?: boolean }) {
@@ -24,7 +24,7 @@ function SummaryRow({ label, value, bold, red }: { label: string; value: string;
       <Text
         style={[
           bold ? Typography.h3 : Typography.body,
-          { color: red ? Colors.brand.red : Colors.text.primary },
+          { color: red ? Colors.brand.blue : Colors.text.primary },
         ]}
       >
         {value}
@@ -50,10 +50,10 @@ export default function CartSummary({ subtotal, gst, deliveryFee, total }: Props
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
+    borderColor: Colors.light.borderFaint,
     padding: Spacing.lg,
     gap: Spacing.md,
   },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: Colors.dark.border,
+    backgroundColor: Colors.light.border,
     marginVertical: Spacing.xs,
   },
 });

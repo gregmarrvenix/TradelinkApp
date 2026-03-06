@@ -20,11 +20,11 @@ export default function Card({ children, style, noPadding }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Colors.dark.surface,
+    backgroundColor: Colors.white,
     borderRadius: Radius.md,
     borderWidth: 1,
-    borderColor: Colors.dark.border,
-    ...Shadows.sm,
+    borderColor: Colors.light.borderFaint,
+    ...Shadows.card,
   },
   padded: {
     padding: Spacing.lg,
