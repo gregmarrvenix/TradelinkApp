@@ -12,3 +12,5 @@ ios/build/
 .env.*
 !.env.example
 Tradelink_Trade_App_Spec.md
+
+.vercel

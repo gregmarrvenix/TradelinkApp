@@ -9,7 +9,7 @@ function getBaseUrl(): string {
       default: 'http://localhost:3000',
     })!;
   }
-  return 'https://tradelink.venix.com.au';
+  return 'https://api.tradelink.venix.com.au';
 }
 
 const API_BASE_URL = getBaseUrl();
