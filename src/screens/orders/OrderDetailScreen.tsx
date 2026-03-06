@@ -190,24 +190,31 @@ export default function OrderDetailScreen({ route, navigation }: OrderDetailScre
             <Text style={[Typography.h4, { color: colors.textPrimary, marginBottom: Spacing.md }]}>
               Items ({order.items.length})
             </Text>
-            {order.items.map((item, i) => (
-              <View
-                key={item.productId + i}
-                style={[styles.itemRow, i > 0 && { borderTopWidth: 1, borderTopColor: colors.border }]}
-              >
-                <View style={{ flex: 1 }}>
-                  <Text style={[Typography.body, { color: colors.textPrimary }]} numberOfLines={1}>
-                    {item.name}
-                  </Text>
-                  <Text style={[Typography.caption, { color: colors.textSecondary }]}>
-                    {item.quantity} x {formatCurrency(item.unitPrice)}
+            {order.items.map((item: any, i: number) => {
+              const name = item.name ?? item.product?.name ?? 'Unknown item';
+              const qty = item.quantity ?? item.qty ?? 1;
+              const price = item.unitPrice ?? item.product?.tradePrice ?? 0;
+              const lineTotal = item.total ?? price * qty;
+              const key = item.productId ?? item.product?.id ?? String(i);
+              return (
+                <View
+                  key={key + i}
+                  style={[styles.itemRow, i > 0 && { borderTopWidth: 1, borderTopColor: colors.border }]}
+                >
+                  <View style={{ flex: 1 }}>
+                    <Text style={[Typography.body, { color: colors.textPrimary }]} numberOfLines={1}>
+                      {name}
+                    </Text>
+                    <Text style={[Typography.caption, { color: colors.textSecondary }]}>
+                      {qty} x {formatCurrency(price)}
+                    </Text>
+                  </View>
+                  <Text style={[Typography.h4, { color: colors.textPrimary }]}>
+                    {formatCurrency(lineTotal)}
                   </Text>
                 </View>
-                <Text style={[Typography.h4, { color: colors.textPrimary }]}>
-                  {formatCurrency(item.total)}
-                </Text>
-              </View>
-            ))}
+              );
+            })}
           </Card>
         </MotiView>
 

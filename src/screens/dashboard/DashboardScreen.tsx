@@ -122,7 +122,7 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
       {
         icon: 'add-shopping-cart',
         label: 'New Order',
-        color: Colors.brand.accent,
+        color: Colors.brand.blue,
         onPress: () => nav.navigate('CatalogueTab', { screen: 'Catalogue' }),
       },
       {

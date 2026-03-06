@@ -48,8 +48,9 @@ export default function ActiveDeliveryCard({
             </>
           )}
           <View style={{ flex: 1 }} />
-          <TouchableOpacity onPress={onTrack}>
-            <Text style={[Typography.label, { color: Colors.brand.accent }]}>Track &rarr;</Text>
+          <TouchableOpacity onPress={onTrack} style={styles.trackBtn} activeOpacity={0.8}>
+            <MaterialIcons name="gps-fixed" size={16} color={Colors.white} />
+            <Text style={[Typography.label, { color: Colors.white, marginLeft: 6 }]}>Track</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -74,5 +75,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: Spacing.md,
+  },
+  trackBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.brand.blue,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
   },
 });
