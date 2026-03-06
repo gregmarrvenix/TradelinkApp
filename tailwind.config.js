@@ -1,0 +1,55 @@
+module.exports = {
+  content: ['./App.{js,jsx,ts,tsx}', './src/**/*.{js,jsx,ts,tsx}'],
+  presets: [require('nativewind/preset')],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          red: '#D0021B',
+          'red-dark': '#A80016',
+          'red-light': '#FF1A35',
+          'red-faded': '#FFE8EB',
+        },
+        dark: {
+          bg: '#0F0F0F',
+          surface: '#1A1A1A',
+          surface2: '#242424',
+          surface3: '#2E2E2E',
+          border: '#3A3A3A',
+          'border-faint': '#2A2A2A',
+        },
+        light: {
+          bg: '#F5F5F5',
+          surface: '#FFFFFF',
+          surface2: '#F0F0F0',
+          surface3: '#E8E8E8',
+          border: '#E0E0E0',
+          'border-faint': '#EFEFEF',
+        },
+        status: {
+          scheduled: '#F39C12',
+          dispatched: '#2980B9',
+          enroute: '#27AE60',
+          delivered: '#27AE60',
+          processing: '#9B59B6',
+          cancelled: '#E74C3C',
+          pickup: '#16A085',
+        },
+        success: '#27AE60',
+        'success-bg': '#0D2818',
+        warning: '#F39C12',
+        'warning-bg': '#2A1F00',
+        error: '#E74C3C',
+        'error-bg': '#2A0A08',
+        info: '#2980B9',
+        'info-bg': '#0A1F2A',
+      },
+      fontFamily: {
+        sans: ['System'],
+        mono: ['monospace'],
+      },
+    },
+  },
+  plugins: [],
+  darkMode: 'class',
+};

@@ -1,0 +1,37 @@
+appId: com.tradelinkapp
+---
+# Theme Toggle E2E Test
+# Assumes user is already logged in
+
+- launchApp
+
+# Wait for dashboard
+- waitForAnimationToEnd
+- assertVisible: "G'day"
+
+# Navigate to Account tab
+- tapOn: "Account"
+
+# Wait for account screen
+- waitForAnimationToEnd
+
+# Tap Settings
+- tapOn: "Settings"
+
+# Wait for settings screen
+- waitForAnimationToEnd
+
+# Find and toggle Dark Mode switch
+- tapOn: "Dark Mode"
+
+# Wait for theme animation
+- waitForAnimationToEnd
+
+# Toggle back to original theme
+- tapOn: "Dark Mode"
+
+# Wait for theme animation
+- waitForAnimationToEnd
+
+# Verify settings screen is still showing
+- assertVisible: "Settings"

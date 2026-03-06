@@ -1,0 +1,14 @@
+node_modules/
+.gradle/
+build/
+android/app/build/
+ios/Pods/
+ios/build/
+.metro-health-check*
+*.hprof
+*.jks
+*.keystore
+.env
+.env.*
+!.env.example
+Tradelink_Trade_App_Spec.md

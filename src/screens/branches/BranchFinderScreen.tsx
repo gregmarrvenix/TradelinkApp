@@ -1,0 +1,296 @@
+import React, { useCallback, useMemo, useState } from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Linking,
+  StyleSheet,
+} from 'react-native';
+import { MotiView } from 'moti';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+import { useThemeStore } from '../../store/themeStore';
+import { useBranches } from '../../hooks/useBranches';
+import SearchBar from '../../components/common/SearchBar';
+import EmptyState from '../../components/common/EmptyState';
+import LoadingSkeleton from '../../components/common/LoadingSkeleton';
+import { Colors } from '../../theme/colors';
+import { Typography } from '../../theme/typography';
+import { Spacing, Radius } from '../../theme/spacing';
+import { Shadows } from '../../theme/shadows';
+import type { BranchFinderScreenProps } from '../../navigation/types';
+import type { Branch } from '../../types';
+
+const HOME_BRANCH_ID = 'branch-1';
+
+function getDistance(lat: number, lng: number): number {
+  const baseLat = -33.8688;
+  const baseLng = 151.2093;
+  const R = 6371;
+  const dLat = ((lat - baseLat) * Math.PI) / 180;
+  const dLng = ((lng - baseLng) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((baseLat * Math.PI) / 180) *
+      Math.cos((lat * Math.PI) / 180) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function isOpen(): boolean {
+  const hour = new Date().getHours();
+  return hour >= 6 && hour < 17;
+}
+
+export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
+  const colors = useThemeStore((s) => s.colors)();
+  const { data: branches, isLoading } = useBranches();
+  const [search, setSearch] = useState('');
+  const open = isOpen();
+
+  const sorted = useMemo(() => {
+    if (!branches) return [];
+    let result = branches.map((b) => ({ ...b, distance: getDistance(b.lat, b.lng) }));
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      result = result.filter((b) => b.name.toLowerCase().includes(q));
+    }
+    result.sort((a, b) => a.distance - b.distance);
+    return result;
+  }, [branches, search]);
+
+  const handleCall = useCallback((phone: string) => {
+    Linking.openURL(`tel:${phone.replace(/\s/g, '')}`);
+  }, []);
+
+  const handleDirections = useCallback((address: string) => {
+    const encoded = encodeURIComponent(address);
+    Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${encoded}`);
+  }, []);
+
+  const renderItem = useCallback(
+    ({ item, index }: { item: Branch & { distance: number }; index: number }) => {
+      const isHome = item.id === HOME_BRANCH_ID;
+      return (
+        <MotiView
+          from={{ opacity: 0, translateY: 12 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{ type: 'timing', duration: 350, delay: index * 60 }}
+        >
+          <View style={[styles.branchCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.branchHeader}>
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={[Typography.h4, { color: colors.textPrimary }]}>{item.name}</Text>
+                {isHome && (
+                  <View style={styles.homeBadge}>
+                    <MaterialIcons name="star" size={10} color={Colors.white} />
+                    <Text style={[Typography.overline, { color: Colors.white, marginLeft: 2 }]}>HOME</Text>
+                  </View>
+                )}
+              </View>
+              <View style={styles.statusDot}>
+                <View style={[styles.dot, { backgroundColor: open ? Colors.success : Colors.error }]} />
+                <Text style={[Typography.labelSm, { color: open ? Colors.success : Colors.error }]}>
+                  {open ? 'Open' : 'Closed'}
+                </Text>
+              </View>
+            </View>
+
+            <Text style={[Typography.caption, { color: Colors.brand.red, marginBottom: Spacing.xs }]}>
+              {item.services.join(' + ')}
+            </Text>
+
+            <TouchableOpacity onPress={() => handleDirections(item.address)} activeOpacity={0.7}>
+              <View style={styles.infoRow}>
+                <MaterialIcons name="place" size={16} color={colors.textTertiary} />
+                <Text style={[Typography.bodySm, { color: colors.textSecondary, marginLeft: Spacing.xs, flex: 1 }]}>
+                  {item.address}
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => handleCall(item.phone)} activeOpacity={0.7}>
+              <View style={styles.infoRow}>
+                <MaterialIcons name="phone" size={16} color={colors.textTertiary} />
+                <Text style={[Typography.bodySm, { color: Colors.brand.red, marginLeft: Spacing.xs }]}>
+                  {item.phone}
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+            <View style={styles.infoRow}>
+              <MaterialIcons name="schedule" size={16} color={colors.textTertiary} />
+              <Text style={[Typography.bodySm, { color: colors.textSecondary, marginLeft: Spacing.xs }]}>
+                {item.hours}
+              </Text>
+            </View>
+
+            <View style={styles.distanceRow}>
+              <MaterialIcons name="near-me" size={14} color={colors.textTertiary} />
+              <Text style={[Typography.caption, { color: colors.textSecondary, marginLeft: Spacing.xs }]}>
+                {item.distance.toFixed(1)} km away
+              </Text>
+            </View>
+          </View>
+        </MotiView>
+      );
+    },
+    [colors, open, handleCall, handleDirections],
+  );
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, { backgroundColor: colors.bg }]}>
+        <View style={styles.loadContent}>
+          <LoadingSkeleton variant="card" count={4} />
+        </View>
+      </View>
+    );
+  }
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.bg }]}>
+      <View style={styles.header}>
+        <Text style={[Typography.h1, { color: colors.textPrimary }]}>Find a Branch</Text>
+      </View>
+
+      <View style={[styles.mapPlaceholder, { backgroundColor: Colors.dark.surface2, borderColor: colors.border }]}>
+        <View style={styles.mapContent}>
+          <MaterialIcons name="place" size={48} color={Colors.brand.red} />
+          <Text style={[Typography.h3, { color: colors.textSecondary, marginTop: Spacing.sm }]}>
+            Map View
+          </Text>
+          <Text style={[Typography.caption, { color: colors.textTertiary, marginTop: Spacing.xs }]}>
+            {sorted.length} branch{sorted.length !== 1 ? 'es' : ''} nearby
+          </Text>
+        </View>
+        {sorted.slice(0, 4).map((b, i) => {
+          const isHome = b.id === HOME_BRANCH_ID;
+          return (
+            <View
+              key={b.id}
+              style={[
+                styles.mapPin,
+                {
+                  top: 30 + (i * 20) % 60,
+                  left: 40 + (i * 60) % 200,
+                },
+              ]}
+            >
+              <MaterialIcons
+                name={isHome ? 'star' : 'fiber-manual-record'}
+                size={isHome ? 18 : 12}
+                color={Colors.brand.red}
+              />
+              <Text style={[Typography.overline, { color: colors.textSecondary }]}>
+                {b.name.split(' ')[0]}
+              </Text>
+            </View>
+          );
+        })}
+      </View>
+
+      <View style={styles.searchWrap}>
+        <SearchBar
+          value={search}
+          onChangeText={setSearch}
+          placeholder="Search branches..."
+        />
+      </View>
+
+      <FlatList
+        data={sorted}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.listContent}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={
+          <EmptyState icon="store" title="No Branches Found" subtitle="Try a different search" />
+        }
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  loadContent: { paddingHorizontal: Spacing.screen, paddingTop: Spacing.xl },
+  header: {
+    paddingHorizontal: Spacing.screen,
+    paddingTop: Spacing.xl,
+    paddingBottom: Spacing.md,
+  },
+  mapPlaceholder: {
+    marginHorizontal: Spacing.screen,
+    height: 180,
+    borderRadius: Radius.md,
+    borderWidth: 1,
+    overflow: 'hidden',
+    marginBottom: Spacing.md,
+    position: 'relative',
+  },
+  mapContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  mapPin: {
+    position: 'absolute',
+    alignItems: 'center',
+  },
+  searchWrap: {
+    paddingHorizontal: Spacing.screen,
+    marginBottom: Spacing.md,
+  },
+  listContent: {
+    paddingHorizontal: Spacing.screen,
+    paddingBottom: Spacing.huge,
+  },
+  branchCard: {
+    borderRadius: Radius.md,
+    borderWidth: 1,
+    padding: Spacing.lg,
+    marginBottom: Spacing.sm,
+    ...Shadows.sm,
+  },
+  branchHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: Spacing.xs,
+  },
+  homeBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.brand.red,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+    marginLeft: Spacing.sm,
+  },
+  statusDot: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: Spacing.xs,
+  },
+  distanceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: Spacing.sm,
+    paddingTop: Spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255,255,255,0.05)',
+  },
+});

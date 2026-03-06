@@ -1,0 +1,44 @@
+appId: com.tradelinkapp
+---
+# Browse and Add to Cart E2E Test
+# Assumes user is already logged in
+
+- launchApp
+
+# Wait for dashboard
+- waitForAnimationToEnd
+- assertVisible: "G'day"
+
+# Navigate to Shop tab
+- tapOn: "Shop"
+
+# Wait for catalogue to load
+- waitForAnimationToEnd
+
+# Tap first category
+- tapOn:
+    index: 0
+    className: "android.view.ViewGroup"
+
+# Wait for products to load
+- waitForAnimationToEnd
+
+# Tap first product in the list
+- tapOn:
+    index: 0
+    className: "android.view.ViewGroup"
+
+# Wait for product detail to load
+- waitForAnimationToEnd
+
+# Add to cart
+- tapOn: "Add to Cart"
+
+# Navigate to cart tab
+- tapOn: "Cart"
+
+# Wait for cart to load
+- waitForAnimationToEnd
+
+# Verify product appears in cart
+- assertVisible: "Checkout"

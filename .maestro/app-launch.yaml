@@ -1,0 +1,4 @@
+appId: com.tradelinkapp
+---
+- launchApp
+- assertVisible: "Tradelink Trade App"

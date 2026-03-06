@@ -1,0 +1,23 @@
+appId: com.tradelinkapp
+---
+# Login Flow E2E Test
+- launchApp
+
+# Wait for splash screen to complete
+- waitForAnimationToEnd
+
+# Verify login screen elements
+- assertVisible: "TRADELINK"
+- assertVisible: "Sign In"
+
+# Email should be pre-filled with demo credentials
+- assertVisible: "jake.morrisson@morrissonplumbing.com.au"
+
+# Tap Sign In button
+- tapOn: "Sign In"
+
+# Wait for dashboard to load
+- waitForAnimationToEnd
+
+# Verify dashboard greeting
+- assertVisible: "G'day"
