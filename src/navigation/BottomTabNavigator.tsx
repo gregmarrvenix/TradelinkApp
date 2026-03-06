@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useThemeStore } from '../store/themeStore';
 import { Colors } from '../theme/colors';
+import FloatingCartButton from '../components/common/FloatingCartButton';
 import type { BottomTabParamList } from './types';
 import HomeStack from './HomeStack';
 import CatalogueStack from './CatalogueStack';
@@ -47,11 +50,28 @@ const iconStyles = StyleSheet.create({
   badgeText: { color: '#FFF', fontSize: 9, fontWeight: '800' },
 });
 
+// Reset stack to root when tab is pressed while already focused
+const resetTabListener = (rootScreen: string) => ({
+  tabPress: (e: any) => {
+    // We don't prevent default - just dispatch a reset if needed
+  },
+  focus: (e: any) => {
+    // handled by initialRouteName
+  },
+});
+
 export default function BottomTabNavigator() {
   const isDark = useThemeStore((s) => s.isDark)();
   const colors = useThemeStore((s) => s.colors)();
+  const nav = useNavigation<NavigationProp<BottomTabParamList>>();
+
+  // Web needs more bottom padding; platform-specific height
+  const isWeb = Platform.OS === 'web';
+  const tabHeight = isWeb ? 64 : Platform.OS === 'android' ? 60 : 80;
+  const tabPaddingBottom = isWeb ? 8 : Platform.OS === 'android' ? 8 : 24;
 
   return (
+    <View style={{ flex: 1 }}>
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
@@ -59,8 +79,8 @@ export default function BottomTabNavigator() {
           backgroundColor: isDark ? Colors.dark.surface : Colors.light.surface,
           borderTopColor: isDark ? Colors.dark.border : Colors.light.border,
           borderTopWidth: 1,
-          height: Platform.OS === 'android' ? 60 : 80,
-          paddingBottom: Platform.OS === 'android' ? 8 : 24,
+          height: tabHeight,
+          paddingBottom: tabPaddingBottom,
           paddingTop: 8,
         },
         tabBarActiveTintColor: Colors.brand.blue,
@@ -75,6 +95,11 @@ export default function BottomTabNavigator() {
           tabBarLabel: 'Home',
           tabBarIcon: ({ focused }) => <TabIcon name="home" focused={focused} />,
         }}
+        listeners={({ navigation: tabNav }) => ({
+          tabPress: () => {
+            tabNav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'HomeTab' }] }));
+          },
+        })}
       />
       <Tab.Screen
         name="CatalogueTab"
@@ -83,6 +108,11 @@ export default function BottomTabNavigator() {
           tabBarLabel: 'Shop',
           tabBarIcon: ({ focused }) => <TabIcon name="search" focused={focused} />,
         }}
+        listeners={({ navigation: tabNav }) => ({
+          tabPress: () => {
+            tabNav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'CatalogueTab' }] }));
+          },
+        })}
       />
       <Tab.Screen
         name="OrdersTab"
@@ -93,6 +123,11 @@ export default function BottomTabNavigator() {
             <TabIcon name="local-shipping" focused={focused} badgeCount={1} />
           ),
         }}
+        listeners={({ navigation: tabNav }) => ({
+          tabPress: () => {
+            tabNav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'OrdersTab' }] }));
+          },
+        })}
       />
       <Tab.Screen
         name="AccountTab"
@@ -101,7 +136,16 @@ export default function BottomTabNavigator() {
           tabBarLabel: 'Account',
           tabBarIcon: ({ focused }) => <TabIcon name="person" focused={focused} />,
         }}
+        listeners={({ navigation: tabNav }) => ({
+          tabPress: () => {
+            tabNav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'AccountTab' }] }));
+          },
+        })}
       />
     </Tab.Navigator>
+    <FloatingCartButton
+      onPress={() => nav.navigate('AccountTab', { screen: 'Cart' } as any)}
+    />
+    </View>
   );
 }

@@ -114,6 +114,12 @@ export default function CartScreen({ navigation }: CartScreenProps) {
   if (items.length === 0) {
     return (
       <View style={[styles.container, { backgroundColor: colors.bg }]}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 16, paddingBottom: 8 }}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4, marginRight: 12 }}>
+            <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
+          </TouchableOpacity>
+          <Text style={[Typography.h2, { color: colors.textPrimary }]}>Cart</Text>
+        </View>
         <EmptyState
           icon="shopping-cart"
           title="Your cart is empty"
@@ -141,6 +147,9 @@ export default function CartScreen({ navigation }: CartScreenProps) {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View style={styles.headerBadge}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4, marginRight: 12 }}>
+              <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
+            </TouchableOpacity>
             <Text style={[Typography.h2, { color: colors.textPrimary }]}>Cart</Text>
             <Badge count={itemCount} />
           </View>

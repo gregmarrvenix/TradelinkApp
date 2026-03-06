@@ -134,7 +134,10 @@ export default function InvoicesScreen({ navigation }: InvoicesScreenProps) {
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
       <View style={styles.header}>
-        <Text style={[Typography.h1, { color: colors.textPrimary }]}>Invoices</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4, marginRight: 12 }}>
+          <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
+        </TouchableOpacity>
+        <Text style={[Typography.h2, { color: colors.textPrimary }]}>Invoices</Text>
       </View>
 
       <MotiView
@@ -215,6 +218,8 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   loadContent: { paddingHorizontal: Spacing.screen, paddingTop: Spacing.xl },
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: Spacing.screen,
     paddingTop: Spacing.xl,
     paddingBottom: Spacing.md,

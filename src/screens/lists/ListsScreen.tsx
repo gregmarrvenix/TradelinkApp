@@ -74,7 +74,10 @@ export default function ListsScreen({ navigation }: ListsScreenProps) {
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
       <View style={styles.header}>
-        <Text style={[Typography.h1, { color: colors.textPrimary }]}>My Lists</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4, marginRight: 12 }}>
+          <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
+        </TouchableOpacity>
+        <Text style={[Typography.h2, { color: colors.textPrimary, flex: 1 }]}>My Lists</Text>
         <TouchableOpacity
           style={[styles.addBtn, { backgroundColor: Colors.brand.blue }]}
           onPress={() => setModalVisible(true)}

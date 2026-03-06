@@ -107,7 +107,10 @@ export default function QuotesScreen({ navigation }: QuotesScreenProps) {
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
       <View style={styles.header}>
-        <Text style={[Typography.h1, { color: colors.textPrimary }]}>Quotes</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4, marginRight: 12 }}>
+          <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
+        </TouchableOpacity>
+        <Text style={[Typography.h2, { color: colors.textPrimary }]}>Quotes</Text>
       </View>
 
       <ScrollView
@@ -147,6 +150,8 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   content: { paddingHorizontal: Spacing.screen, paddingTop: Spacing.xl },
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: Spacing.screen,
     paddingTop: Spacing.xl,
     paddingBottom: Spacing.md,

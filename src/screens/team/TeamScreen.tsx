@@ -39,7 +39,7 @@ function getInitials(name: string) {
     .slice(0, 2);
 }
 
-export default function TeamScreen(_props: TeamScreenProps) {
+export default function TeamScreen({ navigation, ..._props }: TeamScreenProps) {
   const colors = useThemeStore((s) => s.colors)();
   const currentUser = useAuthStore((s) => s.user);
   const { data: team, isLoading } = useTeam();
@@ -180,7 +180,10 @@ export default function TeamScreen(_props: TeamScreenProps) {
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
       <View style={styles.header}>
-        <Text style={[Typography.h1, { color: colors.textPrimary }]}>Team</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4, marginRight: 12 }}>
+          <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
+        </TouchableOpacity>
+        <Text style={[Typography.h2, { color: colors.textPrimary, flex: 1 }]}>Team</Text>
         <TouchableOpacity
           style={[styles.inviteBtn, { backgroundColor: Colors.brand.blue }]}
           onPress={handleInvite}

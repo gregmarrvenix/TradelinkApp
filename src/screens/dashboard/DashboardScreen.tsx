@@ -77,6 +77,16 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
 
   const [refreshing, setRefreshing] = useState(false);
   const [promoIndex, setPromoIndex] = useState(0);
+  const [promosExpanded, setPromosExpanded] = useState(() => {
+    try { return localStorage.getItem('promos_expanded') !== 'false'; } catch { return true; }
+  });
+  const togglePromos = useCallback(() => {
+    setPromosExpanded((v) => {
+      const next = !v;
+      try { localStorage.setItem('promos_expanded', String(next)); } catch {}
+      return next;
+    });
+  }, []);
 
   const isLoading = userLoading || ordersLoading || promosLoading;
   const isError = ordersError;
@@ -271,70 +281,85 @@ export default function DashboardScreen({ navigation }: DashboardScreenProps) {
           </View>
         </AnimatedSection>
 
-        {/* Promotions Carousel */}
+        {/* Promotions Accordion */}
         {promotions && promotions.length > 0 && (
           <AnimatedSection index={4}>
             <View style={styles.section}>
-              <Text style={[Typography.h3, { color: colors.textPrimary, marginBottom: Spacing.md }]}>
-                Promotions
-              </Text>
-              <FlatList
-                data={promotions}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                snapToInterval={PROMO_SNAP_INTERVAL}
-                decelerationRate="fast"
-                onScroll={onPromoScroll}
-                scrollEventThrottle={16}
-                contentContainerStyle={{ paddingRight: Spacing.screen }}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                  <View
-                    style={[
-                      styles.promoCard,
-                      { backgroundColor: Colors.brand.blue },
-                    ]}
-                  >
-                    <Text style={[Typography.h3, { color: Colors.white }]}>
-                      {item.title}
-                    </Text>
-                    <Text
-                      style={[
-                        Typography.body,
-                        { color: 'rgba(255,255,255,0.8)', marginTop: Spacing.xs },
-                      ]}
-                    >
-                      {item.subtitle ?? item.description}
-                    </Text>
-                    <TouchableOpacity
-                      style={styles.promoCta}
-                      activeOpacity={0.8}
-                      onPress={() =>
-                        nav.navigate('CatalogueTab', { screen: 'Catalogue' })
-                      }
-                    >
-                      <Text style={[Typography.label, { color: Colors.brand.blue }]}>
-                        Shop Now
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-              />
-              {promotions.length > 1 && (
-                <View style={styles.dots}>
-                  {promotions.map((_, i) => (
-                    <View
-                      key={i}
-                      style={[
-                        styles.dot,
-                        {
-                          backgroundColor:
-                            i === promoIndex ? Colors.brand.blue : colors.border,
-                        },
-                      ]}
-                    />
-                  ))}
-                </View>
+              <TouchableOpacity
+                onPress={togglePromos}
+                activeOpacity={0.7}
+                style={styles.sectionHeader}
+              >
+                <Text style={[Typography.h3, { color: colors.textPrimary }]}>
+                  Promotions
+                </Text>
+                <MaterialIcons
+                  name={promosExpanded ? 'expand-less' : 'expand-more'}
+                  size={24}
+                  color={colors.textSecondary}
+                />
+              </TouchableOpacity>
+              {promosExpanded && (
+                <>
+                  <FlatList
+                    data={promotions}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    snapToInterval={PROMO_SNAP_INTERVAL}
+                    decelerationRate="fast"
+                    onScroll={onPromoScroll}
+                    scrollEventThrottle={16}
+                    contentContainerStyle={{ paddingRight: Spacing.screen }}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                      <View
+                        style={[
+                          styles.promoCard,
+                          { backgroundColor: Colors.brand.blue },
+                        ]}
+                      >
+                        <Text style={[Typography.h3, { color: Colors.white }]}>
+                          {item.title}
+                        </Text>
+                        <Text
+                          style={[
+                            Typography.body,
+                            { color: 'rgba(255,255,255,0.8)', marginTop: Spacing.xs },
+                          ]}
+                        >
+                          {item.subtitle ?? item.description}
+                        </Text>
+                        <TouchableOpacity
+                          style={styles.promoCta}
+                          activeOpacity={0.8}
+                          onPress={() =>
+                            nav.navigate('CatalogueTab', { screen: 'Catalogue' })
+                          }
+                        >
+                          <Text style={[Typography.label, { color: Colors.brand.blue }]}>
+                            Shop Now
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    )}
+                  />
+                  {promotions.length > 1 && (
+                    <View style={styles.dots}>
+                      {promotions.map((_, i) => (
+                        <View
+                          key={i}
+                          style={[
+                            styles.dot,
+                            {
+                              backgroundColor:
+                                i === promoIndex ? Colors.brand.blue : colors.border,
+                            },
+                          ]}
+                        />
+                      ))}
+                    </View>
+                  )}
+                </>
               )}
             </View>
           </AnimatedSection>

@@ -44,7 +44,7 @@ function isOpen(): boolean {
   return hour >= 6 && hour < 17;
 }
 
-export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
+export default function BranchFinderScreen({ navigation, ..._props }: BranchFinderScreenProps) {
   const colors = useThemeStore((s) => s.colors)();
   const { data: branches, isLoading } = useBranches();
   const [search, setSearch] = useState('');
@@ -160,7 +160,10 @@ export default function BranchFinderScreen(_props: BranchFinderScreenProps) {
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
       <View style={styles.header}>
-        <Text style={[Typography.h1, { color: colors.textPrimary }]}>Find a Branch</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4, marginRight: 12 }}>
+          <MaterialIcons name="arrow-back" size={24} color={colors.textPrimary} />
+        </TouchableOpacity>
+        <Text style={[Typography.h2, { color: colors.textPrimary }]}>Find a Branch</Text>
       </View>
 
       <View style={[styles.mapPlaceholder, { backgroundColor: Colors.light.surface2, borderColor: colors.border }]}>
@@ -225,6 +228,8 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   loadContent: { paddingHorizontal: Spacing.screen, paddingTop: Spacing.xl },
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: Spacing.screen,
     paddingTop: Spacing.xl,
     paddingBottom: Spacing.md,
